@@ -1,22 +1,32 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Route, Switch, Redirect  } from 'react-router-dom';
 import Home from "./views/Home/Home"
 import NotFound from "./views/NotFound"
-import Header from "./components/Header/Header"
+import LoginPage from "./views/LoginPage/LoginPage"
+import RegisterPage from "./views/RegisterPage/RegisterPage"
+import NavBar from "./views/NavBar/NavBar"
+import Auth from "./auth"
+import Footer from "./views/Footer/Footer"
+
 
 
 const App = () => {
   return (
-    <div>
-      <Header />
-      <Switch>
-        <Route exact path="/Home" component={Home} />
-        <Route exact path="/">
-          <Redirect to="/Home" />
-        </Route>
-        <Route component={NotFound}/>
-      </Switch>
-    </div>
+    <Suspense fallback={(<div>Loading...</div>)}>
+      <NavBar />
+      <div style={{ paddingTop: '75px', minHeight: 'calc(100vh - 80px)' }}>
+        <Switch>
+          <Route exact path="/Home" component={Auth(Home, null)} />
+          <Route exact path="/">
+            <Redirect to="/Home" />
+          </Route>
+          <Route exact path="/login" component={Auth(LoginPage, false)} />
+          <Route exact path="/register" component={Auth(RegisterPage, false)} />
+          <Route component={NotFound}/>
+        </Switch>
+      </div>
+      <Footer />
+    </Suspense>
   );
 }
 

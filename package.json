@@ -18,7 +18,7 @@
     "url": "https://github.com/UFWebApps/React_Template_Repo.git"
   },
   "keywords": [],
-  "author": "Dakota Rennemann",
+  "author": "Yuhan Hou",
   "license": "MIT",
   "dependencies": {
     "concurrently": "^4.1.0",
@@ -29,7 +29,16 @@
     "morgan": "^1.9.1",
     "should": "^13.2.3",
     "supertest": "^4.0.2",
-    "mocha": "^6.2.1"
+    "mocha": "^6.2.1",
+    "async": "^3.1.0",
+    "bcrypt": "^3.0.6",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.5",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
+    "multer": "^1.4.2",
+    "react-redux": "^5.0.7",
+    "socket.io": "^2.2.0"
   },
   "homepage": "https://github.com/UFWebApps/React_Template_Repo#readme"
 }
