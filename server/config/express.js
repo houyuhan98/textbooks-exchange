@@ -29,8 +29,9 @@ module.exports.init = () => {
     app.use(cookieParser());
 
     app.use('/api/users', require('../routes/users'));
+    app.use('/api/product', require('../routes/product'));
+    app.use('/uploads', express.static('uploads'));
 
-    // add a router
 
     if (process.env.NODE_ENV === 'production') {
         // Serve any static files

@@ -7,6 +7,11 @@ import RegisterPage from "./views/RegisterPage/RegisterPage"
 import NavBar from "./views/NavBar/NavBar"
 import Auth from "./auth"
 import Footer from "./views/Footer/Footer"
+import LandingPage from "./views/LandingPage/LandingPage"
+import UploadProductPage from './views/UploadProductPage/UploadProductPage'
+import DetailProductPage from './views/DetailProductPage/DetailProductPage'
+import CartPage from './views/CartPage/CartPage'
+import ProfilePage from './views/ProfilePage/ProfilePage'
 
 
 
@@ -22,6 +27,11 @@ const App = () => {
           </Route>
           <Route exact path="/login" component={Auth(LoginPage, false)} />
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
+          <Route exact path="/textbook" component={Auth(LandingPage, null)} />
+          <Route exact path="/product/upload" component={Auth(UploadProductPage, true)} />
+          <Route exact path="/product/:productId" component={Auth(DetailProductPage, null)} />
+          <Route exact path="/user/cart" component={Auth(CartPage, true)} />
+          <Route exact path="/profile" component={Auth(ProfilePage, true)} />
           <Route component={NotFound}/>
         </Switch>
       </div>

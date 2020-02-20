@@ -9,7 +9,7 @@ function Footer() {
             justifyContent: 'center', fontSize:'1rem'
         }}>
            <p> Happy Study, Happy Textbooks Exchange  <Icon type="smile" /></p>
-           <p>CopyRight: Yuhan Hou</p>
+           <p>Have question? email us at help@TBooks.com</p>
         </div>
     )
 }

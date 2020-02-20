@@ -32,8 +32,8 @@ function RightMenu(props) {
     return (
       <Menu mode={props.mode}>
 
-        <Menu.Item key="history">
-          <a href="/history">Profile</a>
+        <Menu.Item key="profile">
+          <a href="/profile">Profile</a>
         </Menu.Item>
 
         <Menu.Item key="upload">
@@ -41,7 +41,7 @@ function RightMenu(props) {
         </Menu.Item>
 
         <Menu.Item key="wishlist">
-          <a href="/" style={{ marginRight: -22 , color:'#667777'}}><Icon type="heart" style={{ fontSize: 25, marginBottom: 3 }} /></a>
+          <a href="/user/wishlist" style={{ marginRight: -22 , color:'#667777'}}><Icon type="heart" style={{ fontSize: 25, marginBottom: 3 }} /></a>
         </Menu.Item>
 
         <Menu.Item key="cart" style={{ paddingBottom: 3 }}>
