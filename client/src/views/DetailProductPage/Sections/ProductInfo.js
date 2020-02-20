@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Descriptions } from 'antd';
+import { Button, Descriptions, Icon } from 'antd';
 
 function ProductInfo(props) {
 
@@ -14,10 +14,20 @@ function ProductInfo(props) {
     const addToCarthandler = () => {
         props.addToCart(props.detail._id)
     }
+    const addToFavoritehandler = () => {
+        props.addToFavorite(props.detail._id)
+    }
 
 
     return (
         <div>
+            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Button size="large" shape="round" type="danger"
+                    onClick={addToFavoritehandler}
+                >
+                    <Icon type="heart" />
+                    </Button>
+            </div>
             <Descriptions title="Product Info">
                 <Descriptions.Item label="Price"> {Product.price}</Descriptions.Item>
                 <Descriptions.Item label="Sold">{Product.sold}</Descriptions.Item>
@@ -29,7 +39,7 @@ function ProductInfo(props) {
             <br />
             <br />
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Button size="large" shape="round" type="danger"
+                <Button size="large" shape="round" type="primary"
                     onClick={addToCarthandler}
                 >
                     Add to Cart

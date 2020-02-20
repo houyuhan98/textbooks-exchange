@@ -12,6 +12,7 @@ import UploadProductPage from './views/UploadProductPage/UploadProductPage'
 import DetailProductPage from './views/DetailProductPage/DetailProductPage'
 import CartPage from './views/CartPage/CartPage'
 import ProfilePage from './views/ProfilePage/ProfilePage'
+import FavoritePage from "./views/FavoritePage/FavoritePage"
 
 
 
@@ -32,6 +33,7 @@ const App = () => {
           <Route exact path="/product/:productId" component={Auth(DetailProductPage, null)} />
           <Route exact path="/user/cart" component={Auth(CartPage, true)} />
           <Route exact path="/profile" component={Auth(ProfilePage, true)} />
+          <Route exact path="/favorite" component={Auth(FavoritePage, null)} />
           <Route component={NotFound}/>
         </Switch>
       </div>

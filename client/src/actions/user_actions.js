@@ -7,6 +7,9 @@ import {
     ADD_TO_CART_USER,
     GET_CART_ITEMS_USER,
     REMOVE_CART_ITEM_USER,
+    ADD_TO_FAVORITE_USER,
+    GET_FAVORITE_ITEMS_USER,
+    REMOVE_FAVORITE_ITEM_USER,
     ON_SUCCESS_BUY_USER
 } from './types';
 
@@ -115,5 +118,35 @@ export function onSuccessBuy(data) {
     return {
         type: ON_SUCCESS_BUY_USER,
         payload:data
+    }
+}
+
+export function addToFavorite(_id) {
+    const request = axios.get(`${'/api/users'}/addToFavorite?productId=${_id}`)
+        .then(response => response.data);
+
+    return {
+        type: ADD_TO_FAVORITE_USER,
+        payload: request
+    }
+}
+
+export function getFavoriteItems(favoriteItems) {
+    const request = axios.get(`/api/product/products_by_id?id=${favoriteItems}&type=array`)
+        .then(response => response.data);
+
+    return {
+        type: GET_FAVORITE_ITEMS_USER,
+        payload: request
+    }
+}
+
+export function removeFavoriteItem(id) {
+    const request = axios.get(`/api/users/removeFromFavorite?_id=${id}`)
+        .then(response =>  response.data);
+
+    return {
+        type: REMOVE_FAVORITE_ITEM_USER,
+        payload: request
     }
 }

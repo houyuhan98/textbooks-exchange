@@ -6,6 +6,9 @@ import {
   ADD_TO_CART_USER,
   GET_CART_ITEMS_USER,
   REMOVE_CART_ITEM_USER,
+  ADD_TO_FAVORITE_USER,
+  GET_FAVORITE_ITEMS_USER,
+  REMOVE_FAVORITE_ITEM_USER,
   ON_SUCCESS_BUY_USER
 } from '../actions/types';
 
@@ -38,6 +41,27 @@ export default function (state = {}, action) {
               userData: {
                   ...state.userData,
                   cart: action.payload.cart
+              }
+
+          }
+      case ADD_TO_FAVORITE_USER:
+          return {
+              ...state, userData: {
+                  ...state.userData,
+                  favorite: action.payload
+              }
+          }
+      case GET_FAVORITE_ITEMS_USER:
+          return {
+              ...state, favoriteDetail: action.payload
+          }
+      case REMOVE_FAVORITE_ITEM_USER:
+          return {
+              ...state,
+              favoriteDetail: action.payload.favoriteDetail,
+              userData: {
+                  ...state.userData,
+                  favorite: action.payload.favorite
               }
 
           }

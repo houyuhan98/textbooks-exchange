@@ -41,7 +41,9 @@ function RightMenu(props) {
         </Menu.Item>
 
         <Menu.Item key="wishlist">
-          <a href="/user/wishlist" style={{ marginRight: -22 , color:'#667777'}}><Icon type="heart" style={{ fontSize: 25, marginBottom: 3 }} /></a>
+          <Badge count={user.userData && user.userData.favorite.length}>
+            <a href="/favorite" style={{ marginRight: -22 , color:'#667777'}}><Icon type="heart" style={{ fontSize: 25, marginBottom: 3 }} /></a>
+          </Badge>
         </Menu.Item>
 
         <Menu.Item key="cart" style={{ paddingBottom: 3 }}>

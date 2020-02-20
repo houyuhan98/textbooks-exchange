@@ -18,6 +18,7 @@ router.get("/auth", auth, (req, res) => {
         role: req.user.role,
         image: req.user.image,
         cart: req.user.cart,
+        favorite: req.user.favorite,
         history: req.user.history
     });
 });
@@ -254,6 +255,102 @@ router.get('/getHistory', auth, (req, res) => {
             let history = doc.history;
             if (err) return res.status(400).send(err)
             return res.status(200).json({ success: true, history })
+        }
+    )
+})
+
+router.get('/addToFavorite', auth, (req, res) => {
+
+    User.findOne({ _id: req.user._id }, (err, userInfo) => {
+        let duplicate = false;
+
+        console.log(userInfo)
+
+        userInfo.favorite.forEach((item) => {
+            if (item.id == req.query.productId) {
+                duplicate = true;
+            }
+        })
+
+
+        if (duplicate) {
+            User.findOneAndUpdate(
+                { _id: req.user._id, "favorite.id": req.query.productId },
+                { $inc: { "favorite.$.quantity": 1 } },
+                { new: true },
+                () => {
+                    if (err) return res.json({ success: false, err });
+                    res.status(200).json(userInfo.favorite)
+                }
+            )
+        } else {
+            User.findOneAndUpdate(
+                { _id: req.user._id },
+                {
+                    $push: {
+                        favorite: {
+                            id: req.query.productId,
+                            quantity: 1,
+                            date: Date.now()
+                        }
+                    }
+                },
+                { new: true },
+                (err, userInfo) => {
+                    if (err) return res.json({ success: false, err });
+                    res.status(200).json(userInfo.favorite)
+                }
+            )
+        }
+    })
+});
+
+
+router.get('/removeFromFavorite', auth, (req, res) => {
+
+    User.findOneAndUpdate(
+        { _id: req.user._id },
+        {
+            "$pull":
+                { "favorite": { "id": req.query._id } }
+        },
+        { new: true },
+        (err, userInfo) => {
+            let favorite = userInfo.favorite;
+            let array = favorite.map(item => {
+                return item.id
+            })
+
+            Product.find({ '_id': { $in: array } })
+                .populate('writer')
+                .exec((err, favoriteDetail) => {
+                    return res.status(200).json({
+                        favoriteDetail,
+                        favorite
+                    })
+                })
+        }
+    )
+})
+
+
+router.get('/userFavoriteInfo', auth, (req, res) => {
+    User.findOne(
+        { _id: req.user._id },
+        (err, userInfo) => {
+            let favorite = userInfo.favorite;
+            let array = favorite.map(item => {
+                return item.id
+            })
+
+
+            Product.find({ '_id': { $in: array } })
+                .populate('writer')
+                .exec((err, favoriteDetail) => {
+                    if (err) return res.status(400).send(err);
+                    return res.status(200).json({ success: true, favoriteDetail, favorite })
+                })
+
         }
     )
 })
