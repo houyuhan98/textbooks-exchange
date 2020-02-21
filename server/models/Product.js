@@ -10,6 +10,22 @@ const productSchema = mongoose.Schema({
         type: String,
         maxlength: 50
     },
+    author: {
+        type: String,
+        maxlength: 50
+    },
+    code: {
+        type: String,
+        maxlength: 50
+    },
+    professor: {
+        type: String,
+        maxlength: 50
+    },
+    ISBN: {
+        type: String,
+        maxlength: 50
+    },
     description: {
         type: String
     },
@@ -17,11 +33,27 @@ const productSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
+    version: {
+        type: Number,
+        default: 0
+    },
     images: {
         type: Array,
         default: []
     },
-    continents: {
+    condition: {
+        type: Number,
+        default: 1
+    },
+    level: {
+        type: Number,
+        default: 1
+    },
+    department: {
+        type: Number,
+        default: 1
+    },
+    category: {
         type: Number,
         default: 1
     },

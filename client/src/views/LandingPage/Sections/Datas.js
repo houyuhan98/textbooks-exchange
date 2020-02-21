@@ -33,39 +33,95 @@ const price = [
 
 
 
-const continents = [
+const condition = [
   {
       "_id": 1,
-      "name": "Africa"
+      "name": "Brand new"
   },
   {
       "_id": 2,
-      "name": "Europe"
+      "name": "New"
   },
   {
       "_id": 3,
-      "name": "Asia"
+      "name": "Used"
   },
   {
       "_id": 4,
-      "name": "North America"
+      "name": "Good"
   },
   {
       "_id": 5,
-      "name": "South America"
-  },
-  {
-      "_id": 6,
-      "name": "Australia"
-  },
-  {
-      "_id": 7,
-      "name": "Antarctica"
+      "name": "Old"
   }
 ]
+
+const level = [
+    {
+        "_id": 1,
+        "name": "Undergraduate"
+    },
+    {
+        "_id": 2,
+        "name": "Graduate"
+    },
+    {
+        "_id": 3,
+        "name": "PHD"
+    }
+  ]
+
+  const department = [
+    {
+        "_id": 1,
+        "name": "Engineering"
+    },
+    {
+        "_id": 2,
+        "name": "Arts"
+    },
+    {
+        "_id": 3,
+        "name": "Liberal Arts"
+    },
+    {
+        "_id": 4,
+        "name": "Accounting"
+    },
+    {
+        "_id": 5,
+        "name": "Bussiness"
+    }
+  ]
+
+  const category = [
+    {
+        "_id": 1,
+        "name": "Computer"
+    },
+    {
+        "_id": 2,
+        "name": "Physics"
+    },
+    {
+        "_id": 3,
+        "name": "Chemistry"
+    },
+    {
+        "_id": 4,
+        "name": "Arts"
+    },
+    {
+        "_id": 5,
+        "name": "Music"
+    }
+  ]
 
 
 export {
   price,
-  continents
+  condition,
+  level,
+  department,
+  category
 }

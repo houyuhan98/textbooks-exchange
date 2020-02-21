@@ -13,8 +13,7 @@ router.get("/auth", auth, (req, res) => {
         isAdmin: req.user.role === 0 ? false : true,
         isAuth: true,
         email: req.user.email,
-        name: req.user.name,
-        lastname: req.user.lastname,
+        fullname: req.user.fullname,
         role: req.user.role,
         image: req.user.image,
         cart: req.user.cart,
@@ -188,8 +187,7 @@ router.post('/successBuy', auth, (req, res) => {
     //2.Put Payment Information that come from Paypal into Payment Collection 
     transactionData.user = {
         id: req.user._id,
-        name: req.user.name,
-        lastname: req.user.lastname,
+        fullname: req.user.fullname,
         email: req.user.email
     }
 
@@ -218,9 +216,6 @@ router.post('/successBuy', auth, (req, res) => {
                 doc.product.forEach(item => {
                     products.push({ id: item.id, quantity: item.quantity })
                 })
-
-                // first Item    quantity 2
-                // second Item  quantity 3
 
                 async.eachSeries(products, (item, callback) => {
                     Product.update(

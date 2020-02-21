@@ -6,24 +6,48 @@ import Axios from 'axios';
 const { Title } = Typography;
 const { TextArea } = Input;
 
-const Continents = [
-    { key: 1, value: "Africa" },
-    { key: 2, value: "Europe" },
-    { key: 3, value: "Asia" },
-    { key: 4, value: "North America" },
-    { key: 5, value: "South America" },
-    { key: 6, value: "Australia" },
-    { key: 7, value: "Antarctica" }
+const condition = [
+    { key: 1, value: "Brand new" },
+    { key: 2, value: "New" },
+    { key: 3, value: "Used" },
+    { key: 4, value: "Good" },
+    { key: 5, value: "Old" }
 ]
-
-
+const level = [
+    { key: 1, value: "Undergraduate" },
+    { key: 2, value: "Graduate" },
+    { key: 3, value: "PHD" }
+]
+const department = [
+    { key: 1, value: "Engineering" },
+    { key: 2, value: "Arts" },
+    { key: 3, value: "Liberal Arts" },
+    { key: 4, value: "Accounting" },
+    { key: 5, value: "Bussiness" }
+]
+const category = [
+    { key: 1, value: "Computer" },
+    { key: 2, value: "Physics" },
+    { key: 3, value: "Chemistry" },
+    { key: 4, value: "Arts" },
+    { key: 5, value: "Music" }
+]
 
 function UploadProductPage(props) {
 
     const [TitleValue, setTitleValue] = useState("")
     const [DescriptionValue, setDescriptionValue] = useState("")
+    const [authorValue, setauthorValue] = useState("")
+    const [professorValue, setprofessorValue] = useState("")
+    const [codeValue, setcodeValue] = useState("")
+    const [isbnValue, setisbnValue] = useState("")
     const [PriceValue, setPriceValue] = useState(0)
-    const [ContinentValue, setContinentValue] = useState(1)
+    const [versionValue, setversionValue] = useState(0)
+    const [conditionValue, setconditionValue] = useState(1)
+    const [levelValue, setlevelValue] = useState(1)
+    const [departmentValue, setdepartmentValue] = useState(1)
+    const [categoryValue, setcategoryValue] = useState(1)
+
 
     const [Images, setImages] = useState([])
 
@@ -36,12 +60,44 @@ function UploadProductPage(props) {
         setDescriptionValue(event.currentTarget.value)
     }
 
+    const onauthorChange = (event) => {
+        setauthorValue(event.currentTarget.value)
+    }
+
+    const onprofessorChange = (event) => {
+        setprofessorValue(event.currentTarget.value)
+    }
+
+    const oncodeChange = (event) => {
+        setcodeValue(event.currentTarget.value)
+    }
+
+    const onisbnChange = (event) => {
+        setisbnValue(event.currentTarget.value)
+    }
+
     const onPriceChange = (event) => {
         setPriceValue(event.currentTarget.value)
     }
 
-    const onContinentsSelectChange = (event) => {
-        setContinentValue(event.currentTarget.value)
+    const onversionChange = (event) => {
+        setversionValue(event.currentTarget.value)
+    }
+
+    const onconditionSelectChange = (event) => {
+        setconditionValue(event.currentTarget.value)
+    }
+
+    const onlevelSelectChange = (event) => {
+        setlevelValue(event.currentTarget.value)
+    }
+
+    const ondepartmentSelectChange = (event) => {
+        setdepartmentValue(event.currentTarget.value)
+    }
+
+    const oncategorySelectChange = (event) => {
+        setcategoryValue(event.currentTarget.value)
     }
 
     const updateImages = (newImages) => {
@@ -51,18 +107,25 @@ function UploadProductPage(props) {
         event.preventDefault();
 
 
-        if (!TitleValue || !DescriptionValue || !PriceValue ||
-            !ContinentValue || !Images) {
+        if (!TitleValue || !DescriptionValue || !categoryValue || !departmentValue || !levelValue || !authorValue || !isbnValue || !professorValue || !codeValue || !PriceValue || !conditionValue || !versionValue || !Images) {
             return alert('fill all the fields first!')
         }
 
         const variables = {
             writer: props.user.userData._id,
             title: TitleValue,
+            author: authorValue,
+            code: codeValue,
+            professor: professorValue,
+            ISBN: isbnValue,
             description: DescriptionValue,
             price: PriceValue,
+            version: versionValue,
             images: Images,
-            continents: ContinentValue,
+            condition: conditionValue,
+            level: levelValue,
+            department: departmentValue,
+            category: categoryValue,
         }
 
         Axios.post('/api/product/uploadProduct', variables)
@@ -80,7 +143,7 @@ function UploadProductPage(props) {
     return (
         <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
             <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                <Title level={2}> Upload Travel Product</Title>
+                <Title level={2}> Upload My Textbooks</Title>
             </div>
 
 
@@ -98,6 +161,70 @@ function UploadProductPage(props) {
                 />
                 <br />
                 <br />
+                <label>Author</label>
+                <Input
+                    onChange={onauthorChange}
+                    value={authorValue}
+                />
+                <br />
+                <br />
+                <label>Version</label>
+                <Input
+                    onChange={onversionChange}
+                    value={versionValue}
+                    type="number"
+                />
+                <br />
+                <br />
+                <label>ISBN</label>
+                <Input
+                    onChange={onisbnChange}
+                    value={isbnValue}
+                />
+                <br />
+                <br />
+                <select onChange={onconditionSelectChange}>
+                    {condition.map(item => (
+                        <option key={item.key} value={item.key}>{item.value} </option>
+                    ))}
+                </select>
+                <br />
+                <br />
+                <label>Course Code</label>
+                <Input
+                    onChange={oncodeChange}
+                    value={codeValue}
+                />
+                <br />
+                <br />
+                <label>Professor</label>
+                <Input
+                    onChange={onprofessorChange}
+                    value={professorValue}
+                />
+                <br />
+                <br />
+                <select onChange={onlevelSelectChange}>
+                    {level.map(item => (
+                        <option key={item.key} value={item.key}>{item.value} </option>
+                    ))}
+                </select>
+                <br />
+                <br />
+                <select onChange={ondepartmentSelectChange}>
+                    {department.map(item => (
+                        <option key={item.key} value={item.key}>{item.value} </option>
+                    ))}
+                </select>
+                <br />
+                <br />
+                <select onChange={oncategorySelectChange}>
+                    {category.map(item => (
+                        <option key={item.key} value={item.key}>{item.value} </option>
+                    ))}
+                </select>
+                <br />
+                <br />
                 <label>Description</label>
                 <TextArea
                     onChange={onDescriptionChange}
@@ -112,16 +239,10 @@ function UploadProductPage(props) {
                     type="number"
                 />
                 <br /><br />
-                <select onChange={onContinentsSelectChange}>
-                    {Continents.map(item => (
-                        <option key={item.key} value={item.key}>{item.value} </option>
-                    ))}
-                </select>
-                <br />
-                <br />
+                
 
                 <Button
-                    onClick={onSubmit}
+                    onClick={onSubmit} type="primary" size="large"
                 >
                     Submit
                 </Button>

@@ -33,11 +33,11 @@ function RightMenu(props) {
       <Menu mode={props.mode}>
 
         <Menu.Item key="profile">
-          <a href="/profile">Profile</a>
+          <a href="/profile">myProfile</a>
         </Menu.Item>
 
         <Menu.Item key="upload">
-          <a href="/product/upload">Upload</a>
+          <a href="/product/upload"><Icon type="upload" />Upload</a>
         </Menu.Item>
 
         <Menu.Item key="wishlist">

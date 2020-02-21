@@ -12,7 +12,7 @@ function SingleComment(props) {
         <div>
             <Comment
                 actions={actions}
-                author={props.comment.writer.name}
+                author={props.comment.writer.fullname}
                 avatar={
                     <Avatar
                         src={props.comment.writer.image}

@@ -17,17 +17,19 @@ function ProfilePage() {
             })
 
     }, [])
-
+   
     return (
         <div style={{ width: '80%', margin: '3rem auto ' }}>
-            <div style={{ textAlign: 'center' }}>
-                <h1>History</h1>
+           
+            <div style={{ textAlign: 'left' }}>
+                <h1>Purchase History</h1>
             </div>
             <br />
             <table>
                 <thead>
                     <tr>
                         <th>Payment Id</th>
+                        <th>Textbook</th>
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Date of Purchase</th>
@@ -39,6 +41,7 @@ function ProfilePage() {
                     {History.map(item => (
                         <tr key={item._id}>
                             <td>{item.paymentId}</td>
+                            <td>{item.name}</td>
                             <td>{item.price}</td>
                             <td>{item.quantity}</td>
                             <td>{item.dateOfPurchase}</td>

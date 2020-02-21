@@ -9,7 +9,9 @@ import {
   Form,
   Input,
   Button,
+  Typography
 } from 'antd';
+const { Title } = Typography;
 
 const formItemLayout = {
   labelCol: {
@@ -41,16 +43,13 @@ function RegisterPage(props) {
     <Formik
       initialValues={{
         email: '',
-        lastName: '',
-        name: '',
+        fullname: '',
         password: '',
         confirmPassword: ''
       }}
       validationSchema={Yup.object().shape({
-        name: Yup.string()
+        fullname: Yup.string()
           .required('Name is required'),
-        lastName: Yup.string()
-          .required('Last Name is required'),
         email: Yup.string()
           .email('Email is invalid')
           .required('Email is required'),
@@ -67,8 +66,7 @@ function RegisterPage(props) {
           let dataToSubmit = {
             email: values.email,
             password: values.password,
-            name: values.name,
-            lastname: values.lastname,
+            fullname: values.fullname,
             image: `http://gravatar.com/avatar/${moment().unix()}?d=identicon`
           };
 
@@ -98,40 +96,23 @@ function RegisterPage(props) {
         } = props;
         return (
           <div className="app">
-            <h2>Sign up</h2>
+            <Title level={2}>Sign Up</Title>
             <Form style={{ minWidth: '375px' }} {...formItemLayout} onSubmit={handleSubmit} >
 
-              <Form.Item required label="Name">
+              <Form.Item required label="Full Name">
                 <Input
-                  id="name"
-                  placeholder="Enter your name"
+                  id="fullname"
+                  placeholder="Enter your full name"
                   type="text"
-                  value={values.name}
+                  value={values.fullname}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={
-                    errors.name && touched.name ? 'text-input error' : 'text-input'
+                    errors.fullname && touched.fullname ? 'text-input error' : 'text-input'
                   }
                 />
-                {errors.name && touched.name && (
-                  <div className="input-feedback">{errors.name}</div>
-                )}
-              </Form.Item>
-
-              <Form.Item required label="Last Name">
-                <Input
-                  id="lastName"
-                  placeholder="Enter your Last Name"
-                  type="text"
-                  value={values.lastName}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={
-                    errors.lastName && touched.lastName ? 'text-input error' : 'text-input'
-                  }
-                />
-                {errors.lastName && touched.lastName && (
-                  <div className="input-feedback">{errors.lastName}</div>
+                {errors.fullname && touched.fullname && (
+                  <div className="input-feedback">{errors.fullname}</div>
                 )}
               </Form.Item>
 

@@ -4,7 +4,7 @@ import { Icon, Col, Card, Row } from 'antd';
 import ImageSlider from '../../components/ImageSlider';
 import CheckBox from './Sections/CheckBox';
 import RadioBox from './Sections/RadioBox';
-import { continents, price } from './Sections/Datas';
+import { condition, price, level, department, category } from './Sections/Datas';
 import SearchFeature from './Sections/SearchFeature';
 
 const { Meta } = Card;
@@ -18,8 +18,11 @@ function LandingPage() {
     const [SearchTerms, setSearchTerms] = useState("")
 
     const [Filters, setFilters] = useState({
-        continents: [],
-        price: []
+        condition: [],
+        price: [],
+        level: [],
+        category: [],
+        department: []
     })
 
     useEffect(() => {
@@ -143,7 +146,7 @@ function LandingPage() {
     return (
         <div style={{ width: '75%', margin: '3rem auto' }}>
             <div style={{ textAlign: 'center' }}>
-                <h2>  Let's Travel Anywhere  <Icon type="rocket" />  </h2>
+                <h2>  Let's Make Use of Used Textbooks  <Icon type="rocket" />  </h2>
             </div>
 
 
@@ -152,8 +155,26 @@ function LandingPage() {
             <Row gutter={[16, 16]}>
                 <Col lg={12} xs={24} >
                     <CheckBox
-                        list={continents}
-                        handleFilters={filters => handleFilters(filters, "continents")}
+                        list={condition}
+                        handleFilters={filters => handleFilters(filters, "condition")}
+                    />
+                </Col>
+                <Col lg={12} xs={24} >
+                    <CheckBox
+                        list={level}
+                        handleFilters={filters => handleFilters(filters, "level")}
+                    />
+                </Col>
+                <Col lg={12} xs={24} >
+                    <CheckBox
+                        list={category}
+                        handleFilters={filters => handleFilters(filters, "category")}
+                    />
+                </Col>
+                <Col lg={12} xs={24} >
+                    <CheckBox
+                        list={department}
+                        handleFilters={filters => handleFilters(filters, "department")}
                     />
                 </Col>
                 <Col lg={12} xs={24}>

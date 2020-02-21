@@ -1,4 +1,5 @@
 import React from 'react'
+import { Icon, Button } from 'antd';
 
 function UserCardBlock(props) {
 
@@ -18,11 +19,13 @@ function UserCardBlock(props) {
                     <img style={{ width: '70px' }} alt="product" 
                     src={renderCartImage(product.images)} />
                 </td> 
+                <td>{product.title} </td>
+                <td>{product.author} </td>
                 <td>{product.quantity} EA</td>
                 <td>$ {product.price} </td>
-                <td><button 
+                <td><Button type="danger"
                 onClick={()=> props.removeItem(product._id)}
-                >Remove </button> </td>
+                ><Icon type="delete" /> </Button> </td>
             </tr>
         ))
     )
@@ -33,9 +36,11 @@ function UserCardBlock(props) {
             <table>
                 <thead>
                     <tr>
-                        <th>Product Image</th>
-                        <th>Product Quantity</th>
-                        <th>Product Price</th>
+                        <th>Textbook Image</th>
+                        <th>Textbook Title</th>
+                        <th>Textbook Author</th>
+                        <th>Textbook Quantity</th>
+                        <th>Textbook Price</th>
                         <th>Remove from Cart</th>
                     </tr>
                 </thead>
