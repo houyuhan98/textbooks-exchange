@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Typography, Button, Form, message, Input, Icon } from 'antd';
+import { Typography, Button, Form, Input} from 'antd';
 import FileUpload from '../../components/FileUpload'
 import Axios from 'axios';
 
@@ -183,6 +183,7 @@ function UploadProductPage(props) {
                 />
                 <br />
                 <br />
+                <label>Condition: </label>
                 <select onChange={onconditionSelectChange}>
                     {condition.map(item => (
                         <option key={item.key} value={item.key}>{item.value} </option>
@@ -204,6 +205,7 @@ function UploadProductPage(props) {
                 />
                 <br />
                 <br />
+                <label>Program Level: </label>
                 <select onChange={onlevelSelectChange}>
                     {level.map(item => (
                         <option key={item.key} value={item.key}>{item.value} </option>
@@ -211,6 +213,7 @@ function UploadProductPage(props) {
                 </select>
                 <br />
                 <br />
+                <label>Department: </label>
                 <select onChange={ondepartmentSelectChange}>
                     {department.map(item => (
                         <option key={item.key} value={item.key}>{item.value} </option>
@@ -218,6 +221,7 @@ function UploadProductPage(props) {
                 </select>
                 <br />
                 <br />
+                <label>Category: </label>
                 <select onChange={oncategorySelectChange}>
                     {category.map(item => (
                         <option key={item.key} value={item.key}>{item.value} </option>

@@ -18,7 +18,6 @@ function ProductInfo(props) {
         props.addToFavorite(props.detail._id)
     }
 
-
     return (
         <div>
             <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
