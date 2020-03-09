@@ -14,6 +14,14 @@ const userSchema = mongoose.Schema({
         trim: true,
         unique: 1
     },
+    address: { 
+        type: String, 
+        default: '' 
+    },
+    description: { 
+        type: String, 
+        default: ''
+    },
     password: {
         type: String,
         minglength: 5
