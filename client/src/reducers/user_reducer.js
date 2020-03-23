@@ -74,7 +74,6 @@ export default function (state = {}, action) {
               },
               cartDetail: action.payload.cartDetail
           }
-
       default:
           return state;
   }
