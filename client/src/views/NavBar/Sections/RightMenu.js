@@ -33,27 +33,24 @@ function RightMenu(props) {
       <Menu mode={props.mode}>
 
         <Menu.Item key="profile">
-          <a href="/profile">myProfile</a>
+          <a href="/profile"><Icon type="user" style={{ fontSize: 25}} />myProfile</a>
         </Menu.Item>
 
         <Menu.Item key="upload">
-          <a href="/product/upload"><Icon type="upload" />Upload</a>
+          <a href="/product/upload"><Icon type="upload" style={{ fontSize: 25}} /></a>
         </Menu.Item>
 
         <Menu.Item key="wishlist">
           <Badge count={user.userData && user.userData.favorite.length}>
-            <a href="/favorite" style={{ marginRight: -22 , color:'#667777'}}><Icon type="heart" style={{ fontSize: 25, marginBottom: 3 }} /></a>
+            <a href="/favorite"><Icon type="heart" style={{ fontSize: 25}} /></a>
           </Badge>
         </Menu.Item>
 
-        <Menu.Item key="cart" style={{ paddingBottom: 3 }}>
+        <Menu.Item key="cart">
           <Badge count={user.userData && user.userData.cart.length}>
-            <a href="/user/cart" style={{ marginRight: -22 , color:'#667777'}}>
-              <Icon type="shopping-cart" style={{ fontSize: 30, marginBottom: 3 }} />
-            </a>
+            <a href="/user/cart"><Icon type="shopping-cart" style={{ fontSize: 25}} /></a>
           </Badge>
         </Menu.Item>
-
 
         <Menu.Item key="logout">
           <a onClick={logoutHandler}>Logout</a>
