@@ -18,6 +18,18 @@ const userSchema = mongoose.Schema({
         type: String, 
         default: '' 
     },
+    sex: { 
+        type: String, 
+        default: '' 
+    },
+    phone: { 
+        type: String, 
+        default: '' 
+    },
+    birthday: { 
+        type: String, 
+        default: '' 
+    },
     description: { 
         type: String, 
         default: ''

@@ -74,30 +74,38 @@ const level = [
   const department = [
     {
         "_id": 1,
-        "name": "Engineering"
+        "name": "Herbert Wertheim College of Engineering"
     },
     {
         "_id": 2,
-        "name": "Arts"
+        "name": "College of the Arts"
     },
     {
         "_id": 3,
-        "name": "Liberal Arts"
+        "name": "Warrington College of Business"
     },
     {
         "_id": 4,
-        "name": "Accounting"
+        "name": "College of Education"
     },
     {
         "_id": 5,
-        "name": "Bussiness"
+        "name": "College of Medicine"
+    },
+    {
+        "_id": 6,
+        "name": "Levin College of Law"
+    },
+    {
+        "_id": 7,
+        "name": "Fisher School of Accounting"
     }
   ]
 
   const category = [
     {
         "_id": 1,
-        "name": "Computer"
+        "name": "Finance"
     },
     {
         "_id": 2,
@@ -105,7 +113,7 @@ const level = [
     },
     {
         "_id": 3,
-        "name": "Chemistry"
+        "name": "Math"
     },
     {
         "_id": 4,

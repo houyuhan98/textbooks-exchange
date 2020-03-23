@@ -152,50 +152,48 @@ function LandingPage() {
 
             {/* Filter  */}
 
-            <Row gutter={[16, 16]}>
-                <Col lg={12} xs={24} >
+            <Row gutter={[8, 8]}>
+                <Col lg={12} xs={12} >
+                    <label>Condition:</label>
                     <CheckBox
                         list={condition}
                         handleFilters={filters => handleFilters(filters, "condition")}
                     />
                 </Col>
-                <Col lg={12} xs={24} >
+                <Col lg={12} xs={12} >
+                    <label>Program Level:</label>
                     <CheckBox
                         list={level}
                         handleFilters={filters => handleFilters(filters, "level")}
                     />
                 </Col>
-                <Col lg={12} xs={24} >
+                <Col lg={12} xs={12} >
+                    <label>Category:</label>
                     <CheckBox
                         list={category}
                         handleFilters={filters => handleFilters(filters, "category")}
                     />
                 </Col>
-                <Col lg={12} xs={24} >
+                <Col lg={12} xs={12} >
+                    <label>Department:</label>
                     <CheckBox
                         list={department}
                         handleFilters={filters => handleFilters(filters, "department")}
                     />
                 </Col>
-                <Col lg={12} xs={24}>
+                <Col lg={12} xs={12}>
+                    <label>Price:</label>
                     <RadioBox
                         list={price}
                         handleFilters={filters => handleFilters(filters, "price")}
                     />
                 </Col>
             </Row>
-
-
-            {/* Search  */}
             <div style={{ display: 'flex', justifyContent: 'flex-end', margin: '1rem auto' }}>
-
                 <SearchFeature
                     refreshFunction={updateSearchTerms}
                 />
-
             </div>
-
-
             {Products.length === 0 ?
                 <div style={{ display: 'flex', height: '300px', justifyContent: 'center', alignItems: 'center' }}>
                     <h2>No post yet...</h2>

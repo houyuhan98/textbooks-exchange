@@ -19,16 +19,18 @@ const level = [
     { key: 3, value: "PHD" }
 ]
 const department = [
-    { key: 1, value: "Engineering" },
-    { key: 2, value: "Arts" },
-    { key: 3, value: "Liberal Arts" },
-    { key: 4, value: "Accounting" },
-    { key: 5, value: "Bussiness" }
+    { key: 1, value: "Herbert Wertheim College of Engineering" },
+    { key: 2, value: "College of the Arts" },
+    { key: 3, value: "Warrington College of Business" },
+    { key: 4, value: "College of Education" },
+    { key: 5, value: "College of Medicine" },
+    { key: 6, value: "Levin College of Law" },
+    { key: 7, value: "Fisher School of Accounting" }
 ]
 const category = [
-    { key: 1, value: "Computer" },
+    { key: 1, value: "Finance" },
     { key: 2, value: "Physics" },
-    { key: 3, value: "Chemistry" },
+    { key: 3, value: "Math" },
     { key: 4, value: "Arts" },
     { key: 5, value: "Music" }
 ]
