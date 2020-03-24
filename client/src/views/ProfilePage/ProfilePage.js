@@ -29,7 +29,7 @@ function ProfilePage() {
     return (
         <div style={{ width: '80%', margin: '3rem auto ' }}>
            <div style={{ textAlign: 'left' }}>
-                <h1>My Profile <Link className="btn btn-light" to="/settings"><Icon type="setting" style={{color:'grey', fontSize:25}}/></Link></h1>
+                <h1>My Profile <Link className="btn btn-light" to="/settings"><Icon type="setting" style={{color:'grey'}}/></Link></h1>
             </div>
             <br/>
             <Form>
@@ -65,7 +65,7 @@ function ProfilePage() {
             <br/>
             
             <div style={{ textAlign: 'left' }}>
-                <h1>My Purchase History</h1>
+                <h1>My Purchase History <Icon type="shopping"/></h1>
             </div>
             <br />
             <table>
@@ -95,7 +95,7 @@ function ProfilePage() {
             <br/>
 
             <div style={{ textAlign: 'left' }}>
-                <h1>My Post History</h1>
+                <h1>My Post History <Icon type="schedule"/></h1>
             </div>
             <br />
             <table>
