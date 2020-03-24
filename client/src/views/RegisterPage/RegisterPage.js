@@ -153,7 +153,7 @@ function RegisterPage(props) {
               <Form.Item required label="Confirm" hasFeedback>
                 <Input
                   id="confirmPassword"
-                  placeholder="Enter your confirmPassword"
+                  placeholder="Confirm your Password"
                   type="password"
                   value={values.confirmPassword}
                   onChange={handleChange}

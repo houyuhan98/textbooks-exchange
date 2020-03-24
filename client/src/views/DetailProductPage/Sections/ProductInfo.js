@@ -1,8 +1,9 @@
-import React, { useEffect, useState, useReducer } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Descriptions, Icon } from 'antd';
+import { useSelector } from 'react-redux';
 
 function ProductInfo(props) {
-
+    const user = useSelector(state => state.user)
     const [Product, setProduct] = useState({})
 
     useEffect(() => {
@@ -12,9 +13,15 @@ function ProductInfo(props) {
     }, [props.detail])
 
     const addToCarthandler = () => {
+        if (user.userData && !user.userData.isAuth) {
+            return alert('Please Log in first');
+        }
         props.addToCart(props.detail._id)
     }
     const addToFavoritehandler = () => {
+        if (user.userData && !user.userData.isAuth) {
+            return alert('Please Log in first');
+        }
         props.addToFavorite(props.detail._id)
     }
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Typography, Button, Form, Input} from 'antd';
+import { Typography, Button, Form, Input, Icon} from 'antd';
 import FileUpload from '../../components/FileUpload'
 import Axios from 'axios';
 
@@ -145,17 +145,9 @@ function UploadProductPage(props) {
     return (
         <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
             <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                <Title level={2}> Upload My Textbooks</Title>
+                <Title level={2}> Upload My Textbooks <Icon type="book"/></Title>
             </div>
-
-
             <Form onSubmit={onSubmit} >
-
-                {/* DropZone */}
-                <FileUpload refreshFunction={updateImages} />
-
-                <br />
-                <br />
                 <label>Title</label>
                 <Input
                     onChange={onTitleChange}
@@ -245,16 +237,16 @@ function UploadProductPage(props) {
                     type="number"
                 />
                 <br /><br />
-                
-
+                {/* DropZone */}
+                <label>Upload images</label>
+                <FileUpload refreshFunction={updateImages} />
+                <p style={{color:'red'}}>*drop or choose from files, left click image to delete on right area</p>
                 <Button
-                    onClick={onSubmit} type="primary" size="large"
+                    onClick={onSubmit} type="dashed" size="large"
                 >
-                    Submit
+                    Post
                 </Button>
-
             </Form>
-
         </div>
     )
 }

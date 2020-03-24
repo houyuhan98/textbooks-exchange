@@ -5,7 +5,7 @@ import './Home.css';
 function Home() {
     return (
         <div id="home-hero" className="App">
-            <a href="/textbook"><Button className="start" type="ghost" size="large" icon="right">Start</Button></a>
+            <a href="/textbook"><Button className="start" type="dashed" size="large" icon="right">Start</Button></a>
         </div>
     );
 }
