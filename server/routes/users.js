@@ -398,4 +398,28 @@ router.put('/profile', auth, (req, res) => {
     })
 })
 
+router.put('/resetpassword', auth, (req, res) => {
+    const oldPassword = req.body.oldPassword;
+    const newPassword = req.body.newPassword;
+    const user = req.user;
+    user.comparePassword(oldPassword, function(err, isMatch) {
+      if (err) {
+        return res.status(400).send(err);
+      }
+      if (!isMatch) {
+        return res.status(422).send({ message: 'You old password is incorrect! Please try again.' })
+      }
+      if (oldPassword === newPassword) {
+        return res.status(422).send({ message: 'Your new password must be different from your old password!' });
+      }
+      user.password = newPassword;
+      user.save(function(err) {
+        if (err) {
+            return res.status(400).send(err);
+        }
+        res.json({ message: 'You have successfully updated your password.' });
+      });
+    });
+  })
+
 module.exports = router;

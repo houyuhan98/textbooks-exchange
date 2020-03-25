@@ -172,3 +172,7 @@ export function fetchProfile() {
     payload: request
     }
   }
+
+  export function changePassword(dataToSubmit) {
+    axios.put(`${'/api/users'}/resetpassword`, dataToSubmit)
+  }
