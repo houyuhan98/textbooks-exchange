@@ -10,11 +10,13 @@ import {
 
 const { TextArea } = Input;
 const sex = [
-    { key: 1, value: "Male" },
-    { key: 2, value: "Female" }
+    { key: 1, value: "" },
+    { key: 2, value: "Male" },
+    { key: 3, value: "Female" },
+    { key: 4, value: "I don't want to provide" }
 ]
 
-function ProfilePage(props) {
+function ProfilePage() {
     const dispatch = useDispatch();
     const [emailValue, setemailValue] = useState("")
     const [fullnameValue, setfullnameValue] = useState("")
@@ -38,7 +40,15 @@ function ProfilePage(props) {
     }, [])
    
     useEffect(() => {
-        fetchProfile();
+        dispatch(fetchProfile()).then(response => {
+            setemailValue(response.payload.email)
+            setfullnameValue(response.payload.fullname)
+            setbirthdayValue(response.payload.birthday)
+            setsexValue(response.payload.sex)
+            setphoneValue(response.payload.phone)
+            setdescriptionValue(response.payload.description)
+            setaddressValue(response.payload.address)
+        })
     }, [])
 
     const onfullnameChange = (event) => {
@@ -64,7 +74,17 @@ function ProfilePage(props) {
         if (!fullnameValue){
             return alert('fullname is required')
         }
-        updateProfile(fullnameValue, birthdayValue, sexValue, phoneValue, addressValue, descriptionValue);
+        let dataToSubmit = {
+            fullname: fullnameValue,
+            birthday: birthdayValue,
+            sex: sexValue,
+            phone: phoneValue,
+            address: addressValue,
+            description: descriptionValue
+          };
+        dispatch(updateProfile(dataToSubmit)).then(response => {
+            alert('profile successfully updated')
+          })
     }
 
     return (
@@ -84,7 +104,7 @@ function ProfilePage(props) {
                 <br/>
                 <br/>
                 <label>Sex</label><br/>
-                <select style={{width:200, height:30, borderRadius:5}} onChange={onsexChange}>
+                <select style={{width:200, height:30, borderRadius:5}} onChange={onsexChange} value={sexValue}>
                     {sex.map(item => (
                         <option key={item.key} value={item.key}>{item.value}</option>
                     ))}

@@ -154,36 +154,21 @@ export function removeFavoriteItem(id) {
 }
 
 export function fetchProfile() {
-    return function(dispatch) {
-      axios.get(`${'/api/users'}/profile`).then(response => {
-        dispatch({
-          type: FETCH_PROFILE,
-          payload: response.data.user,
-        });
-      });
+    const request = axios.get(`${'/api/users'}/profile`)
+        .then(response => response.data);
+
+    return {
+        type: FETCH_PROFILE,
+        payload: request
     }
   }
 
-  export function updateProfile({ fullname, birthday, sex, phone, address, description }) {
-    return function(dispatch) {
-      axios.put(`${'/api/users'}/profile`, { 
-          fullname,
-          birthday,
-          sex,
-          phone,
-          address,
-          description
-        }
-      )
-        .then((response) => {
-          dispatch({
-            type: UPDATE_PROFILE,
-            payload: response.data.user,
-          });
-          dispatch({
-            type: AUTH_USER,
-            payload: response.data.user.fullname,
-          });
-        })
+  export function updateProfile(dataToSubmit) {
+    const request = axios.put(`${'/api/users'}/profile`, dataToSubmit)
+    .then(response => response.data);
+
+    return {
+    type: UPDATE_PROFILE,
+    payload: request
     }
   }

@@ -356,18 +356,15 @@ router.get('/userFavoriteInfo', auth, (req, res) => {
 })
 
 router.get('/profile', auth, (req, res) => {
-    const user = ({
+    res.status(200).json({
         email: req.user.email,
         fullname: req.user.fullname,
-        birthday: req.user.birthday,
+        address: req.user.address,
         sex: req.user.sex,
         phone: req.user.phone,
-        address: req.user.address,
-        description: req.user.description,
-      });
-      res.send({
-        user: user
-      });
+        birthday: req.user.birthday,
+        description: req.user.description
+    });
 })
 
 router.put('/profile', auth, (req, res) => {
@@ -397,7 +394,7 @@ router.put('/profile', auth, (req, res) => {
         delete updatedUser['password'];
         delete updatedUser['__v'];
         // Return updated user profile
-        res.send({ user: updatedUser });
+        res.status(200).json(updatedUser)
     })
 })
 
