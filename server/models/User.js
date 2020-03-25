@@ -19,8 +19,8 @@ const userSchema = mongoose.Schema({
         default: '' 
     },
     sex: { 
-        type: String, 
-        default: '' 
+        type: Number,
+        default: 1
     },
     phone: { 
         type: String, 

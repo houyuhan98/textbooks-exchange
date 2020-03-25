@@ -2,6 +2,11 @@ import React, { useEffect, useState } from 'react'
 import Axios from 'axios'
 import { Link } from 'react-router-dom';
 import { Button, Form, Input, Icon } from 'antd';
+import { useDispatch } from 'react-redux';
+import {
+    fetchProfile,
+    updateProfile
+} from '../../actions/user_actions';
 
 const { TextArea } = Input;
 const sex = [
@@ -9,12 +14,18 @@ const sex = [
     { key: 2, value: "Female" }
 ]
 
-function ProfilePage() {
-
+function ProfilePage(props) {
+    const dispatch = useDispatch();
+    const [emailValue, setemailValue] = useState("")
+    const [fullnameValue, setfullnameValue] = useState("")
+    const [birthdayValue, setbirthdayValue] = useState("")
+    const [sexValue, setsexValue] = useState(1)
+    const [phoneValue, setphoneValue] = useState("")
+    const [descriptionValue, setdescriptionValue] = useState("")
+    const [addressValue, setaddressValue] = useState("")
     const [History, setHistory] = useState([])
 
     useEffect(() => {
-
         Axios.get('/api/users/getHistory')
             .then(response => {
                 if (response.data.success) {
@@ -26,40 +37,70 @@ function ProfilePage() {
 
     }, [])
    
+    useEffect(() => {
+        fetchProfile();
+    }, [])
+
+    const onfullnameChange = (event) => {
+        setfullnameValue(event.currentTarget.value)
+    }
+    const onbirthdayChange = (event) => {
+        setbirthdayValue(event.currentTarget.value)
+    }
+    const onsexChange = (event) => {
+        setsexValue(event.currentTarget.value)
+    }
+    const onphoneChange = (event) => {
+        setphoneValue(event.currentTarget.value)
+    }
+    const ondescriptionChange = (event) => {
+        setdescriptionValue(event.currentTarget.value)
+    }
+    const onaddressChange = (event) => {
+        setaddressValue(event.currentTarget.value)
+    }
+    const onSubmit = (event) => {
+        event.preventDefault();
+        if (!fullnameValue){
+            return alert('fullname is required')
+        }
+        updateProfile(fullnameValue, birthdayValue, sexValue, phoneValue, addressValue, descriptionValue);
+    }
+
     return (
         <div style={{ width: '80%', margin: '3rem auto ' }}>
            <div style={{ textAlign: 'left' }}>
                 <h1>My Profile <Link className="btn btn-light" to="/settings"><Icon type="setting" style={{color:'grey'}}/></Link></h1>
             </div>
             <br/>
-            <Form>
-                <label>Email</label><Input/>
+            <Form onSubmit={onSubmit}>
+                <label>Email</label><Input value={emailValue} disabled/>
                 <br/>
                 <br/>
-                <label>Full Name</label><Input/>
+                <label>Full Name</label><Input  onChange={onfullnameChange} value={fullnameValue}/>
                 <br/>
                 <br/>
-                <label>Birthday</label><Input type="date"/>
+                <label>Birthday</label><Input type="date"  onChange={onbirthdayChange} value={birthdayValue}/>
                 <br/>
                 <br/>
                 <label>Sex</label><br/>
-                <select style={{width:200, height:30, borderRadius:5}}>
+                <select style={{width:200, height:30, borderRadius:5}} onChange={onsexChange}>
                     {sex.map(item => (
                         <option key={item.key} value={item.key}>{item.value}</option>
                     ))}
                 </select>
                 <br/>
                 <br/>
-                <label>Phone</label><Input/>
+                <label>Phone</label><Input onChange={onphoneChange} value={phoneValue}/>
                 <br/>
                 <br/>
-                <label>Address</label><Input/>
+                <label>Address</label><Input onChange={onaddressChange} value={addressValue}/>
                 <br/>
                 <br/>
-                <label>Description</label><TextArea/>
+                <label>Description</label><TextArea onChange={ondescriptionChange} value={descriptionValue}/>
                 <br/>
                 <br/>
-                <Button type="dashed" size="large">Update Profile</Button>
+                <Button type="dashed" size="large"  onClick={onSubmit}>Update Profile</Button>
             </Form>
             <br/>
             <br/>

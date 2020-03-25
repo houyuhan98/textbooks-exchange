@@ -10,7 +10,9 @@ import {
     ADD_TO_FAVORITE_USER,
     GET_FAVORITE_ITEMS_USER,
     REMOVE_FAVORITE_ITEM_USER,
-    ON_SUCCESS_BUY_USER
+    ON_SUCCESS_BUY_USER,
+    FETCH_PROFILE,
+    UPDATE_PROFILE
 } from './types';
 
 export function registerUser(dataToSubmit) {
@@ -150,3 +152,38 @@ export function removeFavoriteItem(id) {
         payload: request
     }
 }
+
+export function fetchProfile() {
+    return function(dispatch) {
+      axios.get(`${'/api/users'}/profile`).then(response => {
+        dispatch({
+          type: FETCH_PROFILE,
+          payload: response.data.user,
+        });
+      });
+    }
+  }
+
+  export function updateProfile({ fullname, birthday, sex, phone, address, description }) {
+    return function(dispatch) {
+      axios.put(`${'/api/users'}/profile`, { 
+          fullname,
+          birthday,
+          sex,
+          phone,
+          address,
+          description
+        }
+      )
+        .then((response) => {
+          dispatch({
+            type: UPDATE_PROFILE,
+            payload: response.data.user,
+          });
+          dispatch({
+            type: AUTH_USER,
+            payload: response.data.user.fullname,
+          });
+        })
+    }
+  }

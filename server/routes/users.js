@@ -14,6 +14,11 @@ router.get("/auth", auth, (req, res) => {
         isAuth: true,
         email: req.user.email,
         fullname: req.user.fullname,
+        address: req.user.address,
+        sex: req.user.sex,
+        phone: req.user.phone,
+        birthday: req.user.birthday,
+        description: req.user.description,
         role: req.user.role,
         image: req.user.image,
         cart: req.user.cart,
@@ -348,6 +353,52 @@ router.get('/userFavoriteInfo', auth, (req, res) => {
 
         }
     )
+})
+
+router.get('/profile', auth, (req, res) => {
+    const user = ({
+        email: req.user.email,
+        fullname: req.user.fullname,
+        birthday: req.user.birthday,
+        sex: req.user.sex,
+        phone: req.user.phone,
+        address: req.user.address,
+        description: req.user.description,
+      });
+      res.send({
+        user: user
+      });
+})
+
+router.put('/profile', auth, (req, res) => {
+    const fullname = req.body.fullname;
+    const birthday = req.body.birthday;
+    const sex = req.body.sex;
+    const phone = req.body.phone;
+    const address = req.body.address;
+    const description = req.body.description;
+    // Get user
+    const user = req.user;
+    // Update user profile
+    User.findByIdAndUpdate(user._id, { $set: {
+        fullname: fullname,
+        birthday: birthday,
+        sex: sex,
+        phone: phone,
+        address: address,
+        description: description,
+    } }, { new: true }, function(err, updatedUser) {
+        if (err) {
+            return res.status(400).send(err);
+        }
+        // Delete unused properties: _id, password, __v
+        updatedUser = updatedUser.toObject();
+        delete updatedUser['_id'];
+        delete updatedUser['password'];
+        delete updatedUser['__v'];
+        // Return updated user profile
+        res.send({ user: updatedUser });
+    })
 })
 
 module.exports = router;

@@ -49,10 +49,7 @@ function UploadProductPage(props) {
     const [levelValue, setlevelValue] = useState(1)
     const [departmentValue, setdepartmentValue] = useState(1)
     const [categoryValue, setcategoryValue] = useState(1)
-
-
     const [Images, setImages] = useState([])
-
 
     const onTitleChange = (event) => {
         setTitleValue(event.currentTarget.value)
@@ -107,8 +104,6 @@ function UploadProductPage(props) {
     }
     const onSubmit = (event) => {
         event.preventDefault();
-
-
         if (!TitleValue || !DescriptionValue || !categoryValue || !departmentValue || !levelValue || !authorValue || !isbnValue || !professorValue || !codeValue || !PriceValue || !conditionValue || !versionValue || !Images) {
             return alert('fill all the fields first!')
         }

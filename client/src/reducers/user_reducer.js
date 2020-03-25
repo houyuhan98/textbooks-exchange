@@ -9,7 +9,9 @@ import {
   ADD_TO_FAVORITE_USER,
   GET_FAVORITE_ITEMS_USER,
   REMOVE_FAVORITE_ITEM_USER,
-  ON_SUCCESS_BUY_USER
+  ON_SUCCESS_BUY_USER,
+  FETCH_PROFILE,
+  UPDATE_PROFILE
 } from '../actions/types';
 
 
@@ -23,6 +25,10 @@ export default function (state = {}, action) {
           return { ...state, userData: action.payload }
       case LOGOUT_USER:
           return { ...state }
+      case FETCH_PROFILE:
+          return { ...state, user: action.payload };
+      case UPDATE_PROFILE:
+          return { ...state, user: action.payload };
       case ADD_TO_CART_USER:
           return {
               ...state, userData: {
