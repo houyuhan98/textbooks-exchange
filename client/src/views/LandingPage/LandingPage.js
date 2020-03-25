@@ -158,35 +158,35 @@ function LandingPage() {
                 <Panel header="Filters" key="1">
                     <Row gutter={[8, 8]}>
                         <Col lg={12} xs={12} >
-                            <label><strong>Condition:</strong></label>
+                            <label><strong><Icon type="filter"/>Condition:</strong></label>
                             <CheckBox
                                 list={condition}
                                 handleFilters={filters => handleFilters(filters, "condition")}
                             />
                         </Col>
                         <Col lg={12} xs={12} >
-                            <label><strong>Category:</strong></label>
+                            <label><strong><Icon type="filter"/>Category:</strong></label>
                             <CheckBox
                                 list={category}
                                 handleFilters={filters => handleFilters(filters, "category")}
                             />
                         </Col>
                         <Col lg={12} xs={12} >
-                            <label><strong>Department:</strong></label>
+                            <label><strong><Icon type="filter"/>Department:</strong></label>
                             <CheckBox
                                 list={department}
                                 handleFilters={filters => handleFilters(filters, "department")}
                             />
                         </Col>
                         <Col lg={12} xs={12}>
-                            <label><strong>Price:</strong></label>
+                            <label><strong><Icon type="filter"/>Price:</strong></label>
                             <RadioBox
                                 list={price}
                                 handleFilters={filters => handleFilters(filters, "price")}
                             />
                         </Col>
                         <Col lg={12} xs={12} >
-                            <label><strong>Program Level:</strong></label>
+                            <label><strong><Icon type="filter"/>Program Level:</strong></label>
                             <CheckBox
                                 list={level}
                                 handleFilters={filters => handleFilters(filters, "level")}
