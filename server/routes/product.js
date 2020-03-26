@@ -121,6 +121,4 @@ router.get("/products_by_id", (req, res) => {
     })
 });
 
-
-
 module.exports = router;

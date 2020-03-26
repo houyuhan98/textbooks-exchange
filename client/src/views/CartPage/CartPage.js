@@ -73,7 +73,6 @@ function CartPage(props) {
     }
 
     const transactionSuccess = (data) => {
-
         let variables = {
             cartDetail: props.user.cartDetail, paymentData: data
         }
@@ -93,7 +92,6 @@ function CartPage(props) {
                     alert('Failed to buy it')
                 }
             })
-
     }
 
     const transactionError = () => {

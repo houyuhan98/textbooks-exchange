@@ -122,7 +122,7 @@ function UploadProductPage(props) {
             condition: conditionValue,
             level: levelValue,
             department: departmentValue,
-            category: categoryValue,
+            category: categoryValue
         }
 
         Axios.post('/api/product/uploadProduct', variables)
@@ -134,6 +134,15 @@ function UploadProductPage(props) {
                     alert('Failed to upload Product')
                 }
             })
+
+        Axios.post('/api/users/successPost', variables)
+        .then(response => {
+            if (response.data.success) {
+                alert('Product Successfully Uploaded')
+            } else {
+                alert('Failed to upload Product')
+            }
+        })
 
     }
 

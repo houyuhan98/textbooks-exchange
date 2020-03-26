@@ -26,6 +26,7 @@ function ProfilePage() {
     const [descriptionValue, setdescriptionValue] = useState("")
     const [addressValue, setaddressValue] = useState("")
     const [History, setHistory] = useState([])
+    const [Posts, setPosts] = useState([])
 
     useEffect(() => {
         Axios.get('/api/users/getHistory')
@@ -33,7 +34,19 @@ function ProfilePage() {
                 if (response.data.success) {
                     setHistory(response.data.history)
                 } else {
-                    alert('Failed to get History')
+                    alert('Failed to get purchase history')
+                }
+            })
+
+    }, [])
+
+    useEffect(() => {
+        Axios.get('/api/users/getPost')
+            .then(response => {
+                if (response.data.success) {
+                    setPosts(response.data.post)
+                } else {
+                    alert('Failed to get post history')
                 }
             })
 
@@ -87,6 +100,13 @@ function ProfilePage() {
           })
     }
 
+    const renderImage = (images) => {
+        if(images.length > 0) {
+            let image = images[0]
+            return `http://localhost:5000/${image}`
+        }
+    }
+
     return (
         <div style={{ width: '80%', margin: '3rem auto ' }}>
            <div style={{ textAlign: 'left' }}>
@@ -133,9 +153,9 @@ function ProfilePage() {
                 <thead>
                     <tr>
                         <th>Payment Id</th>
-                        <th>Textbook</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
+                        <th>Textbook Title</th>
+                        <th>Textbook Price</th>
+                        <th>Textbook Quantity</th>
                         <th>Date of Purchase</th>
 
                     </tr>
@@ -145,7 +165,7 @@ function ProfilePage() {
                         <tr key={item._id}>
                             <td>{item.paymentId}</td>
                             <td>{item.name}</td>
-                            <td>{item.price}</td>
+                            <td>$ {item.price}</td>
                             <td>{item.quantity}</td>
                             <td>{item.dateOfPurchase}</td>
                         </tr>
@@ -172,6 +192,17 @@ function ProfilePage() {
                     </tr>
                 </thead>
                 <tbody>
+                    {Posts.map(p => (
+                            <tr key={p.title}>
+                                <td><img style={{ width: '70px' }} alt="product" src={renderImage(p.images)} /></td>
+                                <td>{p.title}</td>
+                                <td>{p.author}</td>
+                                <td>$ {p.price}</td>
+                                <td>{p.dateofPost}</td>
+                                <td><Button type="dashed"><Icon type="edit" /></Button></td>
+                                <td><Button type="danger"><Icon type="delete" /></Button></td>
+                            </tr>
+                        ))}
                 </tbody>
             </table>
         </div>

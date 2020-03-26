@@ -170,8 +170,25 @@ router.get('/userCartInfo', auth, (req, res) => {
     )
 })
 
-
-
+router.post('/successPost', auth, (req, res) => {
+    let post = [];
+    post.push({
+        images: req.body.images,
+        dateOfPost: Date().toString(),
+        title: req.body.title,
+        id: req.body._id,
+        price: req.body.price,
+        author: req.body.author
+    })
+    User.findOneAndUpdate(
+        { _id: req.user._id },
+        { $push: { post: post } },
+        { new: true },
+        (err, user) => {
+            if (err) return res.json({ success: false, err });
+        }
+    )
+})
 
 router.post('/successBuy', auth, (req, res) => {
     let history = [];
@@ -255,6 +272,17 @@ router.get('/getHistory', auth, (req, res) => {
             let history = doc.history;
             if (err) return res.status(400).send(err)
             return res.status(200).json({ success: true, history })
+        }
+    )
+})
+
+router.get('/getPost', auth, (req, res) => {
+    User.findOne(
+        { _id: req.user._id },
+        (err, doc) => {
+            let post = doc.post;
+            if (err) return res.status(400).send(err)
+            return res.status(200).json({ success: true, post })
         }
     )
 })
