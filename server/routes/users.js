@@ -180,7 +180,7 @@ router.post('/successBuy', auth, (req, res) => {
     //1.Put brief Payment Information inside User Collection 
     req.body.cartDetail.forEach((item) => {
         history.push({
-            dateOfPurchase: Date.now(),
+            dateOfPurchase: Date().toString(),
             name: item.title,
             id: item._id,
             price: item.price,
