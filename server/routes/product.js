@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Product } = require("../models/Product");
+const { Comment } = require("../models/Comment");
 const multer = require('multer');
 
 const { auth } = require("../middleware/auth");
@@ -43,7 +44,7 @@ router.post("/uploadProduct", auth, (req, res) => {
 
     product.save((err) => {
         if (err) returnres.status(400).json({ success: false, err })
-        return res.status(200).json({ success: true })
+        return res.status(200).json({ success: true, product })
     })
 
 });
@@ -121,4 +122,26 @@ router.get("/products_by_id", (req, res) => {
     })
 });
 
+router.delete("/products_by_id", (req, res) => {
+    let productId = req.query.id
+    Product.findByIdAndRemove(productId, function(err, post) {
+      if (err) {
+        return res.status(400).send(err)
+      }
+      if (!post) {
+        return res.status(422).json({
+          message: 'Error! The post with the given ID is not exist.'
+        });
+      }
+      Comment.remove({ postId: post._id }, function(err) {
+        if (err) {
+            return res.status(400).send(err)
+        }
+      });
+      res.json({success: true,
+        message: 'The post has been deleted successfully!'
+      });
+    });
+  });
+  
 module.exports = router;

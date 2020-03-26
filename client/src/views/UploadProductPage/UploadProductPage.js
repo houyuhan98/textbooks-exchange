@@ -128,14 +128,17 @@ function UploadProductPage(props) {
         Axios.post('/api/product/uploadProduct', variables)
             .then(response => {
                 if (response.data.success) {
+                    posthistory(response.data.product)
                     alert('Product Successfully Uploaded')
                     props.history.push('/textbook')
                 } else {
                     alert('Failed to upload Product')
                 }
             })
+    }
 
-        Axios.post('/api/users/successPost', variables)
+    const posthistory = (product) => {
+        Axios.post('/api/users/successPost', product)
         .then(response => {
             if (response.data.success) {
                 alert('Product Successfully Uploaded')

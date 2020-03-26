@@ -107,6 +107,18 @@ function ProfilePage() {
         }
     }
 
+    const removeItem = (productId) => {
+        Axios.delete(`/api/product/products_by_id?id=${productId}`)
+            .then(response => {
+                if(response.data.success){
+                    alert(response.data.message)
+                }
+                else{
+                    alert('delete post failed')
+                }
+            })
+    }
+
     return (
         <div style={{ width: '80%', margin: '3rem auto ' }}>
            <div style={{ textAlign: 'left' }}>
@@ -187,8 +199,8 @@ function ProfilePage() {
                         <th>Textbook Author</th>
                         <th>Textbook Price</th>
                         <th>Date of Post</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+                        <th>Edit Post</th>
+                        <th>Delete Post</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -200,7 +212,7 @@ function ProfilePage() {
                                 <td>$ {p.price}</td>
                                 <td>{p.dateOfPost}</td>
                                 <td><Button type="dashed"><Icon type="edit" /></Button></td>
-                                <td><Button type="danger"><Icon type="delete" /></Button></td>
+                                <td><Button type="danger" onClick={()=> removeItem(p.id)}><Icon type="delete" /></Button></td>
                             </tr>
                         ))}
                 </tbody>
