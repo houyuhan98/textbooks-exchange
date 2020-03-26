@@ -198,7 +198,7 @@ function ProfilePage() {
                                 <td>{p.title}</td>
                                 <td>{p.author}</td>
                                 <td>$ {p.price}</td>
-                                <td>{p.dateofPost}</td>
+                                <td>{p.dateOfPost}</td>
                                 <td><Button type="dashed"><Icon type="edit" /></Button></td>
                                 <td><Button type="danger"><Icon type="delete" /></Button></td>
                             </tr>
