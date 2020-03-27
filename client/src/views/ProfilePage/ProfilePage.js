@@ -211,7 +211,7 @@ function ProfilePage() {
                                 <td>{p.author}</td>
                                 <td>$ {p.price}</td>
                                 <td>{p.dateOfPost}</td>
-                                <td><Button type="dashed"><Icon type="edit" /></Button></td>
+                                <td><a href={`/product/edit/${p.id}`}><Button type="dashed"><Icon type="edit" /></Button></a></td>
                                 <td><Button type="danger" onClick={()=> removeItem(p.id)}><Icon type="delete" /></Button></td>
                             </tr>
                         ))}

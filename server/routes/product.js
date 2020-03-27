@@ -122,6 +122,47 @@ router.get("/products_by_id", (req, res) => {
     })
 });
 
+router.put("/products_by_id", (req, res) => {
+    let productId = req.query.id
+    const title = req.body.title;
+    const author = req.body.author;
+    const professor = req.body.professor;
+    const code = req.body.code;
+    const isbn = req.body.ISBN;
+    const description = req.body.description;
+    const price = req.body.price;
+    const version = req.body.version;
+    const condition = req.body.condition;
+    const level = req.body.level;
+    const department = req.body.department;
+    const category = req.body.category;
+    const images = req.body.images;
+    
+    Product.findByIdAndUpdate(productId, { $set: {
+        title: title,
+        author: author,
+        professor: professor,
+        code: code,
+        ISBN: isbn,
+        description: description,
+        price: price,
+        version: version,
+        condition: condition,
+        level: level,
+        department: department,
+        category: category,
+        images: images
+    } }, { new: true }, function(err, updatedPost) {
+        if (err) {
+            return res.status(400).send(err);
+        }
+        updatedPost = updatedPost.toObject();
+        delete updatedPost['_id'];
+        delete updatedPost['__v'];
+        res.status(200).json({success:true, updatedPost})
+    })
+});
+
 router.delete("/products_by_id", (req, res) => {
     let productId = req.query.id
     Product.findByIdAndRemove(productId, function(err, post) {
