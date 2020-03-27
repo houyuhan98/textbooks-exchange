@@ -4,6 +4,7 @@ import { Row, Col } from 'antd';
 import ProductImage from './Sections/ProductImage';
 import ProductInfo from './Sections/ProductInfo';
 import Comments from './Sections/Comments'
+import Relates from './Sections/Relates'
 import LikeDislikes from './Sections/LikeDislikes';
 import { addToCart,addToFavorite } from '../../actions/user_actions';
 import { useDispatch } from 'react-redux';
@@ -16,12 +17,12 @@ function DetailProductPage(props) {
     const productVariable = {
         productId: productId
     }
+
     useEffect(() => {
         Axios.get(`/api/product/products_by_id?id=${productId}&type=single`)
             .then(response => {
                 setProduct(response.data[0])
             })
-
     }, [])
 
     useEffect(() => {
@@ -52,28 +53,31 @@ function DetailProductPage(props) {
 
     return (
         <div className="postPage" style={{ width: '100%', padding: '3rem 4rem' }}>
-
             <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <h1 style={{fontSize:35}}>{Product.title}</h1>
             </div>
-
             <br />
-
-            <Row gutter={[16, 16]} >
-                <Col lg={12} xs={24}>
-                    <ProductImage detail={Product} />
-                </Col>
-                <Col lg={12} xs={24}>
-                    <ProductInfo
-                        addToCart={addToCartHandler}
-                        addToFavorite={addToFavoriteHandler}
-                        detail={Product} />
-                </Col>
-            </Row>
-            <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+            <div>
+                <Row gutter={[16, 16]} >
+                    <Col lg={12} xs={24}>
+                        <ProductImage detail={Product} />
+                    </Col>
+                    <Col lg={12} xs={24}>
+                        <ProductInfo
+                            addToCart={addToCartHandler}
+                            addToFavorite={addToFavoriteHandler}
+                            detail={Product} />
+                    </Col>
+                </Row>
+            </div>
+            <br/>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <LikeDislikes video videoId={productId} userId={localStorage.getItem('userId')} />
             </div>
             <Comments productTitle={Product.title} CommentLists={CommentLists} postId={productId} refreshFunction={updateComment} />
+            <br/>
+            <br/>
+            <Relates detail={Product}/>
         </div>
     )
 }

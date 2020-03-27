@@ -147,7 +147,6 @@ function EditProductPage(props) {
         Axios.put(`/api/product/products_by_id?id=${productId}`, variables)
             .then(response => {
                 if (response.data.success) {
-                  updatehistory(response.data.updatedPost)
                     alert('Product Successfully Updated')
                     props.history.push('/textbook')
                 } else {
@@ -155,18 +154,6 @@ function EditProductPage(props) {
                 }
             })
     }
-
-    const updatehistory = (product) => {
-      Axios.post('/api/users/successPost', product)
-      .then(response => {
-          if (response.data.success) {
-              alert('Product Successfully Updated')
-          } else {
-              alert('Failed to update Product')
-          }
-      })
-
-  }
 
     return (
         <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
