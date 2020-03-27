@@ -6,7 +6,7 @@ import {
     onSuccessBuy
 } from '../../actions/user_actions';
 import UserCardBlock from './Sections/UserCardBlock';
-import { Result, Empty } from 'antd';
+import { Result, Empty, Button } from 'antd';
 import Axios from 'axios';
 import Paypal from '../../components/Paypal';
 
@@ -141,14 +141,16 @@ function CartPage(props) {
             {/* Paypal Button */}
 
             {ShowTotal &&
-
-                <Paypal
-                    toPay={Total}
-                    onSuccess={transactionSuccess}
-                    transactionError={transactionError}
-                    transactionCanceled={transactionCanceled}
-                />
-
+                <div>
+                    <Paypal
+                        toPay={Total}
+                        onSuccess={transactionSuccess}
+                        transactionError={transactionError}
+                        transactionCanceled={transactionCanceled}
+                    />
+                    <p>Or</p>
+                    <Button type="dashed" size="large" disabled>Contact seller for in person exchange</Button>
+                </div>
             }
 
 

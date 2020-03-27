@@ -24,6 +24,62 @@ function ProductInfo(props) {
         }
         props.addToFavorite(props.detail._id)
     }
+    const rendercondition = (choice) => {
+        switch(choice) {
+            case 1:
+              return 'Brand new';
+            case 2:
+              return 'New';
+            case 3:
+              return 'Used';
+            case 4:
+              return 'Good';
+            case 5:
+                return 'Old';
+          }
+    }
+    const renderlevel = (choice) => {
+        switch(choice) {
+            case 1:
+              return 'Undergraduate';
+            case 2:
+              return 'Graduate';
+            case 3:
+              return 'PHD';
+          }
+    }
+    const rendercategory = (choice) => {
+        switch(choice) {
+            case 1:
+              return 'Finance';
+            case 2:
+              return 'Physics';
+            case 3:
+              return 'Math';
+            case 4:
+              return 'Arts';
+            case 5:
+                return 'Music';
+          }
+    }
+    const renderdept = (choice) => {
+        switch(choice) {
+            case 1:
+              return 'Herbert Wertheim College of Engineering';
+            case 2:
+              return 'College of the Arts';
+            case 3:
+              return 'Warrington College of Business';
+            case 4:
+              return 'College of Education';
+            case 5:
+                return 'College of Medicine';
+            case 6:
+                return 'Levin College of Law';
+            case 7:
+                return 'Fisher School of Accounting';
+          }
+    }
 
     return (
         <div>
@@ -42,6 +98,10 @@ function ProductInfo(props) {
                 <Descriptions.Item label="Professor"> {Product.professor}</Descriptions.Item>
                 <Descriptions.Item label="Version"> {Product.version}</Descriptions.Item>
                 <Descriptions.Item label="ISBN"> {Product.ISBN}</Descriptions.Item>
+                <Descriptions.Item label="Condition"> {rendercondition(Product.condition)}</Descriptions.Item>
+                <Descriptions.Item label="Program Level"> {renderlevel(Product.level)}</Descriptions.Item>
+                <Descriptions.Item label="Category"> {rendercategory(Product.category)}</Descriptions.Item>
+                <Descriptions.Item label="Department"> {renderdept(Product.department)}</Descriptions.Item>
             </Descriptions>
             <br/>
             <div>

@@ -54,7 +54,7 @@ function DetailProductPage(props) {
         <div className="postPage" style={{ width: '100%', padding: '3rem 4rem' }}>
 
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <h1>{Product.title}</h1>
+                <h1 style={{fontSize:35}}>{Product.title}</h1>
             </div>
 
             <br />
