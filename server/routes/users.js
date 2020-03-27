@@ -16,6 +16,7 @@ router.get("/auth", auth, (req, res) => {
         fullname: req.user.fullname,
         address: req.user.address,
         sex: req.user.sex,
+        major: req.user.major,
         phone: req.user.phone,
         birthday: req.user.birthday,
         description: req.user.description,
@@ -389,9 +390,11 @@ router.get('/profile', auth, (req, res) => {
         fullname: req.user.fullname,
         address: req.user.address,
         sex: req.user.sex,
+        major: req.user.major,
         phone: req.user.phone,
         birthday: req.user.birthday,
-        description: req.user.description
+        description: req.user.description,
+        image: req.user.image
     });
 })
 
@@ -399,6 +402,7 @@ router.put('/profile', auth, (req, res) => {
     const fullname = req.body.fullname;
     const birthday = req.body.birthday;
     const sex = req.body.sex;
+    const major = req.body.major;
     const phone = req.body.phone;
     const address = req.body.address;
     const description = req.body.description;
@@ -409,6 +413,7 @@ router.put('/profile', auth, (req, res) => {
         fullname: fullname,
         birthday: birthday,
         sex: sex,
+        major: major,
         phone: phone,
         address: address,
         description: description,

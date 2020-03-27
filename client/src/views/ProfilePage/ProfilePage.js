@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Axios from 'axios'
 import { Link } from 'react-router-dom';
-import { Button, Form, Input, Icon } from 'antd';
+import { Button, Form, Input, Icon, Avatar } from 'antd';
 import { useDispatch } from 'react-redux';
 import {
     fetchProfile,
@@ -21,12 +21,14 @@ function ProfilePage() {
     const [emailValue, setemailValue] = useState("")
     const [fullnameValue, setfullnameValue] = useState("")
     const [birthdayValue, setbirthdayValue] = useState("")
+    const [majorValue, setmajorValue] = useState("")
     const [sexValue, setsexValue] = useState(1)
     const [phoneValue, setphoneValue] = useState("")
     const [descriptionValue, setdescriptionValue] = useState("")
     const [addressValue, setaddressValue] = useState("")
     const [History, setHistory] = useState([])
     const [Posts, setPosts] = useState([])
+    const [image, setimageValue] = useState("")
 
     useEffect(() => {
         Axios.get('/api/users/getHistory')
@@ -57,10 +59,12 @@ function ProfilePage() {
             setemailValue(response.payload.email)
             setfullnameValue(response.payload.fullname)
             setbirthdayValue(response.payload.birthday)
+            setmajorValue(response.payload.major)
             setsexValue(response.payload.sex)
             setphoneValue(response.payload.phone)
             setdescriptionValue(response.payload.description)
             setaddressValue(response.payload.address)
+            setimageValue(response.payload.image)
         })
     }, [])
 
@@ -82,6 +86,9 @@ function ProfilePage() {
     const onaddressChange = (event) => {
         setaddressValue(event.currentTarget.value)
     }
+    const onmajorChange = (event) => {
+        setmajorValue(event.currentTarget.value)
+    }
     const onSubmit = (event) => {
         event.preventDefault();
         if (!fullnameValue){
@@ -91,6 +98,7 @@ function ProfilePage() {
             fullname: fullnameValue,
             birthday: birthdayValue,
             sex: sexValue,
+            major: majorValue,
             phone: phoneValue,
             address: addressValue,
             description: descriptionValue
@@ -122,7 +130,7 @@ function ProfilePage() {
     return (
         <div style={{ width: '80%', margin: '3rem auto ' }}>
            <div style={{ textAlign: 'left' }}>
-                <h1>My Profile <Link className="btn btn-light" to="/settings"><Icon type="setting" style={{color:'grey'}}/></Link></h1>
+                <h1><Avatar src={image} alt="image"/>My Profile <Link className="btn btn-light" to="/settings"><Icon type="setting" style={{color:'grey'}}/></Link></h1>
             </div>
             <br/>
             <Form onSubmit={onSubmit}>
@@ -130,6 +138,9 @@ function ProfilePage() {
                 <br/>
                 <br/>
                 <label>Full Name</label><Input  onChange={onfullnameChange} value={fullnameValue}/>
+                <br/>
+                <br/>
+                <label>Major</label><Input onChange={onmajorChange} value={majorValue}/>
                 <br/>
                 <br/>
                 <label>Birthday</label><Input type="date"  onChange={onbirthdayChange} value={birthdayValue}/>

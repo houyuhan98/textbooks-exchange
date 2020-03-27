@@ -18,6 +18,10 @@ const userSchema = mongoose.Schema({
         type: String, 
         default: '' 
     },
+    major: { 
+        type: String, 
+        default: '' 
+    },
     sex: { 
         type: Number,
         default: 1
