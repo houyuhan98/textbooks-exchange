@@ -455,4 +455,16 @@ router.put('/resetpassword', auth, (req, res) => {
     });
   })
 
+  router.get('/sendemail', auth, (req, res) => {
+    const { recipient, sender, topic, text } = req.query; 
+    const msg = {
+        to: recipient, 
+        from: sender,
+        subject: topic,
+        text: text,
+    }
+    sgMail.send(msg)
+    .then((msg) => console.log(recipient));
+  })
+
 module.exports = router;

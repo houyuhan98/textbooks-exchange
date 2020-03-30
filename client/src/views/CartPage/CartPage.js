@@ -92,6 +92,10 @@ function CartPage(props) {
                     alert('Failed to buy it')
                 }
             })
+        Axios.get(`/api/users/sendemail?recipient=${props.user.userData.email}&sender=noreply@TBooks.com&topic=Purchase Confirmation&text=Thank you for your trust with Textbook Exchange. Your purchase is successful, please keep this email as reference.`)
+            .then(response => {
+                console.log('confirmation sent!')
+        })
     }
 
     const transactionError = () => {
@@ -101,7 +105,6 @@ function CartPage(props) {
     const transactionCanceled = () => {
         console.log('Transaction canceled')
     }
-
 
     return (
         <div style={{ width: '85%', margin: '3rem auto' }}>

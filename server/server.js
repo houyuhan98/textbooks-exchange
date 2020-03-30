@@ -5,6 +5,7 @@ const path = require('path'),
     bodyParser = require('body-parser'),
     cookieParser = require("cookie-parser"),
     cors = require('cors');
+    sgMail = require('@sendgrid/mail');
 
     mongoose.connect(process.env.DB_URI || require('./config/config').db.uri, {
         useNewUrlParser: true
@@ -31,6 +32,7 @@ const path = require('path'),
     app.use('/api/like', require('./routes/like'));
     app.use('/uploads', express.static('uploads'));
 
+    sgMail.setApiKey('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');
 
     if (process.env.NODE_ENV === 'production') {
         // Serve any static files
