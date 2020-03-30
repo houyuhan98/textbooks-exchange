@@ -4,7 +4,6 @@ import { Row, Col } from 'antd';
 import ProductImage from './Sections/ProductImage';
 import ProductInfo from './Sections/ProductInfo';
 import Comments from './Sections/Comments'
-import Relates from './Sections/Relates'
 import LikeDislikes from './Sections/LikeDislikes';
 import { addToCart,addToFavorite } from '../../actions/user_actions';
 import { useDispatch } from 'react-redux';
@@ -75,9 +74,6 @@ function DetailProductPage(props) {
                 <LikeDislikes video videoId={productId} userId={localStorage.getItem('userId')} />
             </div>
             <Comments productTitle={Product.title} CommentLists={CommentLists} postId={productId} refreshFunction={updateComment} />
-            <br/>
-            <br/>
-            <Relates detail={Product}/>
         </div>
     )
 }
