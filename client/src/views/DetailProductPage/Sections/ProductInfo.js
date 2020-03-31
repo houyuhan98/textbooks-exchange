@@ -94,11 +94,11 @@ function ProductInfo(props) {
                 <Descriptions.Item label="Price">${Product.price}</Descriptions.Item>
                 <Descriptions.Item label="Sold">{Product.sold}</Descriptions.Item>
                 <Descriptions.Item label="Author"> {Product.author}</Descriptions.Item>
-                <Descriptions.Item label="Course Code"> {Product.code}</Descriptions.Item>
-                <Descriptions.Item label="Professor"> {Product.professor}</Descriptions.Item>
                 <Descriptions.Item label="Version"> {Product.version}</Descriptions.Item>
                 <Descriptions.Item label="ISBN"> {Product.ISBN}</Descriptions.Item>
                 <Descriptions.Item label="Condition"> {rendercondition(Product.condition)}</Descriptions.Item>
+                <Descriptions.Item label="Course Code"> {Product.code}</Descriptions.Item>
+                <Descriptions.Item label="Professor"> {Product.professor}</Descriptions.Item>
                 <Descriptions.Item label="Program Level"> {renderlevel(Product.level)}</Descriptions.Item>
                 <Descriptions.Item label="Category"> {rendercategory(Product.category)}</Descriptions.Item>
                 <Descriptions.Item label="Department"> {renderdept(Product.department)}</Descriptions.Item>
