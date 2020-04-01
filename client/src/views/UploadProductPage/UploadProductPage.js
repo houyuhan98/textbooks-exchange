@@ -107,9 +107,18 @@ function UploadProductPage(props) {
         if (!TitleValue || !DescriptionValue || !categoryValue || !departmentValue || !levelValue || !authorValue || !isbnValue || !professorValue || !codeValue || !PriceValue || !conditionValue || !versionValue || !Images) {
             return alert('fill all the fields first!')
         }
+        if(!props.user.userData.phone || !props.user.userData.major || !props.user.userData.address || !props.user.userData.description){
+            return alert('complete your profile before you can post!')
+        }
 
         const variables = {
             writer: props.user.userData._id,
+            useremail: props.user.userData.email,
+            username: props.user.userData.fullname,
+            usermajor: props.user.userData.major,
+            userphone: props.user.userData.phone,
+            userbio: props.user.userData.description,
+            useraddr: props.user.userData.address,
             title: TitleValue,
             author: authorValue,
             code: codeValue,

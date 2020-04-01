@@ -15,6 +15,7 @@ function UserCardBlock(props) {
     const renderItems = () => (
         props.products && props.products.map(product => (
             <tr key={product._id}>
+                <td>{product.username}:<br/> <Icon type="mail"/> {product.useremail} ,<br/> <Icon type="phone"/> {product.userphone}</td>
                 <td>
                     <img style={{ width: '70px' }} alt="product" 
                     src={renderCartImage(product.images)} />
@@ -36,6 +37,7 @@ function UserCardBlock(props) {
             <table>
                 <thead>
                     <tr>
+                        <th>Seller</th>
                         <th>Textbook Image</th>
                         <th>Textbook Title</th>
                         <th>Textbook Author</th>

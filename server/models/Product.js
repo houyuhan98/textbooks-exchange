@@ -6,6 +6,24 @@ const productSchema = mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+    useremail: {
+        type: String
+    },
+    username: {
+        type: String
+    },
+    userphone: {
+        type: String
+    },
+    usermajor: {
+        type: String
+    },
+    userbio: {
+        type: String
+    },
+    useraddr: {
+        type: String
+    },
     title: {
         type: String,
         maxlength: 50

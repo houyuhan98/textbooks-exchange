@@ -129,6 +129,11 @@ function EditProductPage(props) {
 
         const variables = {
             writer: props.user.userData._id,
+            username: props.user.userData.fullname,
+            usermajor: props.user.userData.major,
+            userphone: props.user.userData.phone,
+            userbio: props.user.userData.description,
+            useraddr: props.user.userData.address,
             title: TitleValue,
             author: authorValue,
             code: codeValue,

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Descriptions, Icon } from 'antd';
+import { Popover, Button, Descriptions, Icon } from 'antd';
 import { useSelector } from 'react-redux';
 
 function ProductInfo(props) {
@@ -81,6 +81,16 @@ function ProductInfo(props) {
           }
     }
 
+    const content = (
+      <div>
+        <label><strong>Email:</strong></label><p><Icon type="mail"/> {Product.useremail}</p>
+        <label><strong>Phone:</strong></label><p><Icon type="phone"/> {Product.userphone}</p>
+        <label><strong>Major:</strong></label><p><Icon type="laptop"/> {Product.usermajor}</p>
+        <label><strong>Address:</strong></label><p><Icon type="home"/> {Product.useraddr}</p>
+        <label><strong>Bio:</strong></label><p><Icon type="rest"/> {Product.userbio}</p>
+      </div>
+    );
+
     return (
         <div>
             <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -105,7 +115,10 @@ function ProductInfo(props) {
             </Descriptions>
             <br/>
             <div>
-                <label><strong>Description:</strong></label><p>{Product.description}</p>
+                <label style={{fontSize:16}}><strong>Description:</strong></label><p>{Product.description}</p>
+            </div>
+            <div>
+                <label style={{fontSize:16}}><strong>Seller:</strong></label><p><Icon type="user"/> {Product.username}  &nbsp;&nbsp;&nbsp;&nbsp; <Popover content={content} title="Seller profile" trigger="click"><a>View Profile</a></Popover></p>
             </div>
 
             <br />

@@ -137,7 +137,12 @@ router.put("/products_by_id", (req, res) => {
     const department = req.body.department;
     const category = req.body.category;
     const images = req.body.images;
-    
+    const username = req.body.username;
+    const usermajor = req.body.usermajor;
+    const userphone = req.body.userphone;
+    const userbio = req.body.userbio;
+    const useraddr = req.body.useraddr;
+
     Product.findByIdAndUpdate(productId, { $set: {
         title: title,
         author: author,
@@ -151,7 +156,13 @@ router.put("/products_by_id", (req, res) => {
         level: level,
         department: department,
         category: category,
-        images: images
+        images: images,
+        username: username,
+        usermajor: usermajor,
+        userphone: userphone,
+        userbio: userbio,
+        useraddr: useraddr
+
     } }, { new: true }, function(err, updatedPost) {
         if (err) {
             return res.status(400).send(err);

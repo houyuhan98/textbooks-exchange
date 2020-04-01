@@ -429,6 +429,11 @@ router.put('/profile', auth, (req, res) => {
         // Return updated user profile
         res.status(200).json(updatedUser)
     })
+    Product.updateMany({ writer: user._id }, { $set: { username: fullname, userphone: phone, usermajor: major, userbio: description, useraddr: address }}, function(err) {
+        if (err) {
+            return res.status(400).send(err);
+        }
+    });
 })
 
 router.put('/resetpassword', auth, (req, res) => {
