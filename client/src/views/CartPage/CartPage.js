@@ -17,7 +17,6 @@ function CartPage(props) {
     const [ShowSuccess, setShowSuccess] = useState(false)
 
     useEffect(() => {
-
         let cartItems = [];
         if (props.user.userData && props.user.userData.cart) {
             if (props.user.userData.cart.length > 0) {
@@ -28,35 +27,26 @@ function CartPage(props) {
 
             }
         }
-
     }, [props.user.userData])
 
     useEffect(() => {
-
         if (props.user.cartDetail && props.user.cartDetail.length > 0) {
             calculateTotal(props.user.cartDetail)
         }
-
-
     }, [props.user.cartDetail])
 
     const calculateTotal = (cartDetail) => {
         let total = 0;
-
         cartDetail.map(item => {
             total += parseInt(item.price, 10) * item.quantity
         });
-
         setTotal(total)
         setShowTotal(true)
     }
 
-
     const removeFromCart = (productId) => {
-
         dispatch(removeCartItem(productId))
             .then(() => {
-
                 Axios.get('/api/users/userCartInfo')
                     .then(response => {
                         if (response.data.success) {
@@ -76,7 +66,6 @@ function CartPage(props) {
         let variables = {
             cartDetail: props.user.cartDetail, paymentData: data
         }
-
         Axios.post('/api/users/successBuy', variables)
             .then(response => {
                 if (response.data.success) {
@@ -110,13 +99,10 @@ function CartPage(props) {
         <div style={{ width: '85%', margin: '3rem auto' }}>
             <h1>My Cart</h1>
             <div>
-
                 <UserCardBlock
                     products={props.user.cartDetail}
                     removeItem={removeFromCart}
                 />
-
-
                 {ShowTotal ?
                     <div style={{ marginTop: '3rem' }}>
                         <h2>Total amount: ${Total} </h2>
@@ -134,14 +120,9 @@ function CartPage(props) {
                             <br />
                             <Empty description={false} />
                             <p>No Items In the Cart</p>
-
                         </div>
                 }
             </div>
-
-
-
-            {/* Paypal Button */}
 
             {ShowTotal &&
                 <div>
@@ -152,12 +133,9 @@ function CartPage(props) {
                         transactionCanceled={transactionCanceled}
                     />
                     <p>Or</p>
-                    <Button type="dashed" size="large" disabled>Contact seller for in person exchange</Button>
+                    <a href="/chat"><Button type="dashed" size="large">Contact seller for in person exchange</Button></a>
                 </div>
             }
-
-
-
         </div>
     )
 }

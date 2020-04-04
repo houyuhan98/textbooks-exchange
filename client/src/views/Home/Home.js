@@ -16,7 +16,7 @@ function Home() {
                 <h2 style={{fontSize:50, textAlign:'center', paddingTop:'100px'}}>What can you do with Textbook Exchange?<br/></h2>
                 <h2 style={{fontSize:'1.75rem', textAlign:'center'}}>It's so simple!</h2>
                 <hr/>
-                <div style={{textAlign:'center', padding:'100px'}}>
+                <div style={{textAlign:'center', padding:'50px'}}>
                 <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
                     <Col className="gutter-row" span={12}>
                         <div>

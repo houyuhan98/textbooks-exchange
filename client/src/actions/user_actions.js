@@ -55,7 +55,6 @@ export function logoutUser() {
     }
 }
 
-
 export function addToCart(_id) {
     const request = axios.get(`${'/api/users'}/addToCart?productId=${_id}`)
         .then(response => response.data);
@@ -65,8 +64,6 @@ export function addToCart(_id) {
         payload: request
     }
 }
-
-
 
 export function getCartItems(cartItems, userCart) {
     const request = axios.get(`/api/product/products_by_id?id=${cartItems}&type=array`)
@@ -92,9 +89,6 @@ export function getCartItems(cartItems, userCart) {
     }
 }
 
-
-
-
 export function removeCartItem(id) {
     const request = axios.get(`/api/users/removeFromCart?_id=${id}`)
         .then(response => {
@@ -114,7 +108,6 @@ export function removeCartItem(id) {
         payload: request
     }
 }
-
 
 export function onSuccessBuy(data) {
     return {

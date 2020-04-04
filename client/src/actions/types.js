@@ -11,3 +11,5 @@ export const REMOVE_FAVORITE_ITEM_USER = 'remove_favorite_item_user';
 export const ON_SUCCESS_BUY_USER = 'on_success_buy_user';
 export const FETCH_PROFILE = 'fetch_profile';
 export const UPDATE_PROFILE = 'update_profile';
+export const GET_CHATS = 'get_chat';
+export const AFTER_POST_MESSAGE = 'after_post_message';

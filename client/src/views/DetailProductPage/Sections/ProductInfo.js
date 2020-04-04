@@ -118,7 +118,7 @@ function ProductInfo(props) {
                 <label style={{fontSize:16}}><strong>Description:</strong></label><p>{Product.description}</p>
             </div>
             <div>
-                <label style={{fontSize:16}}><strong>Seller:</strong></label><p><Icon type="user"/> {Product.username}  &nbsp;&nbsp;&nbsp;&nbsp; <Popover content={content} title="Seller profile" trigger="click"><a>View Profile</a></Popover></p>
+                <label style={{fontSize:16}}><strong>Seller:</strong></label><p><Icon type="user"/> {Product.username}  &nbsp;&nbsp;&nbsp;&nbsp; <a href="/chat"><Icon type="message"/></a> &nbsp;&nbsp;&nbsp;&nbsp; <Popover content={content} title="Seller profile" trigger="click"><a>View Profile</a></Popover></p>
             </div>
 
             <br />

@@ -15,8 +15,7 @@ import CartPage from './views/CartPage/CartPage'
 import Profile from './views/ProfilePage/ProfilePage'
 import Setting from './views/ProfilePage/Setting'
 import FavoritePage from "./views/FavoritePage/FavoritePage"
-
-
+import ChatPage from "./views/ChatPage/ChatPage"
 
 const App = () => {
   return (
@@ -30,6 +29,7 @@ const App = () => {
           </Route>
           <Route exact path="/login" component={Auth(LoginPage, false)} />
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
+          <Route exact path="/chat" component={Auth(ChatPage, null)} />
           <Route exact path="/textbook" component={Auth(LandingPage, null)} />
           <Route exact path="/product/upload" component={Auth(UploadProductPage, true)} />
           <Route exact path="/product/edit/:productId" component={Auth(EditProductPage, true)} />

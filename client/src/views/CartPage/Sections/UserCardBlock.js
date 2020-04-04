@@ -2,9 +2,6 @@ import React from 'react'
 import { Icon, Button } from 'antd';
 
 function UserCardBlock(props) {
-
-
-
     const renderCartImage = (images) => {
         if(images.length > 0) {
             let image = images[0]
@@ -30,7 +27,6 @@ function UserCardBlock(props) {
             </tr>
         ))
     )
-
 
     return (
         <div>
