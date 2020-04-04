@@ -223,7 +223,7 @@ function ProfilePage() {
                                 <td>$ {p.price}</td>
                                 <td>{p.dateOfPost}</td>
                                 <td><a href={`/product/edit/${p.id}`}><Button type="dashed"><Icon type="edit" /></Button></a></td>
-                                <td><Button type="danger" onClick={()=> removeItem(p.id)}><Icon type="delete" /></Button></td>
+                                <td><Button type="danger" onClick={()=> { if (window.confirm('Are you sure you wish to delete this post?')) removeItem(p.id) }}><Icon type="delete" /></Button></td>
                             </tr>
                         ))}
                 </tbody>
