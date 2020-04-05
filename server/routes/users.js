@@ -5,7 +5,6 @@ const { auth } = require("../middleware/auth");
 const { Product } = require('../models/Product');
 const { Payment } = require('../models/Payment');
 const async = require('async');
-const sgMail = require('@sendgrid/mail');
 
 router.get("/auth", auth, (req, res) => {
     res.status(200).json({
