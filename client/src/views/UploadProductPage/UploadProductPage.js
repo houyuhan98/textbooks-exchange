@@ -36,7 +36,6 @@ const category = [
 ]
 
 function UploadProductPage(props) {
-
     const [TitleValue, setTitleValue] = useState("")
     const [DescriptionValue, setDescriptionValue] = useState("")
     const [authorValue, setauthorValue] = useState("")

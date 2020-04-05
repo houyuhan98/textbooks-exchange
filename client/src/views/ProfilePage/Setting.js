@@ -1,10 +1,8 @@
 import { Button, Form, Input, Icon } from 'antd';
 import {changePassword} from '../../actions/user_actions';
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
 
 function Setting() {
-    const dispatch = useDispatch();
     const [oldpassValue, setoldpassValue] = useState("")
     const [newpassValue, setnewpassValue] = useState("")
     const [confirmnewpassValue, setconfirmnewpassValue] = useState("")

@@ -9,17 +9,14 @@ import SearchFeature from './Sections/SearchFeature';
 import { Collapse } from 'antd';
 
 const { Panel } = Collapse
-
 const { Meta } = Card;
 
 function LandingPage() {
-
     const [Products, setProducts] = useState([])
     const [Skip, setSkip] = useState(0)
     const [Limit, setLimit] = useState(8)
     const [PostSize, setPostSize] = useState()
     const [SearchTerms, setSearchTerms] = useState("")
-
     const [Filters, setFilters] = useState({
         condition: [],
         price: [],
@@ -29,14 +26,11 @@ function LandingPage() {
     })
 
     useEffect(() => {
-
         const variables = {
             skip: Skip,
             limit: Limit,
         }
-
         getProducts(variables)
-
     }, [])
 
     const getProducts = (variables) => {
@@ -57,20 +51,16 @@ function LandingPage() {
 
     const onLoadMore = () => {
         let skip = Skip + Limit;
-
         const variables = {
             skip: skip,
             limit: Limit,
             loadMore: true
-
         }
         getProducts(variables)
         setSkip(skip)
     }
 
-
     const renderCards = Products.map((product, index) => {
-
         return <Col lg={6} md={8} xs={24}>
             <Card
                 hoverable={true}
@@ -84,26 +74,20 @@ function LandingPage() {
         </Col>
     })
 
-
     const showFilteredResults = (filters) => {
-
         const variables = {
             skip: 0,
             limit: Limit,
             filters: filters
-
         }
         getProducts(variables)
         setSkip(0)
-
     }
 
     const handlePrice = (value) => {
         const data = price;
         let array = [];
-
         for (let key in data) {
-
             if (data[key]._id === parseInt(value, 10)) {
                 array = data[key].array;
             }
@@ -113,45 +97,34 @@ function LandingPage() {
     }
 
     const handleFilters = (filters, category) => {
-
         const newFilters = { ...Filters }
-
         newFilters[category] = filters
-
         if (category === "price") {
             let priceValues = handlePrice(filters)
             newFilters[category] = priceValues
-
         }
-
         console.log(newFilters)
-
         showFilteredResults(newFilters)
         setFilters(newFilters)
     }
 
     const updateSearchTerms = (newSearchTerm) => {
-
         const variables = {
             skip: 0,
             limit: Limit,
             filters: Filters,
             searchTerm: newSearchTerm
         }
-
         setSkip(0)
         setSearchTerms(newSearchTerm)
-
         getProducts(variables)
     }
-
 
     return (
         <div style={{ width: '75%', margin: '3rem auto' }}>
             <div style={{ textAlign: 'center' }}>
                 <h2>  Let's Make Use of Used Textbooks  <Icon type="rocket" />  </h2>
             </div>
-
 
             {/* Filter  */}
             <Collapse defaultActiveKey={['0']} >
@@ -217,8 +190,6 @@ function LandingPage() {
                     <button onClick={onLoadMore}>Load More</button>
                 </div>
             }
-
-
         </div>
     )
 }

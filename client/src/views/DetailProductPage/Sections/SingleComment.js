@@ -3,7 +3,6 @@ import { Comment, Avatar} from 'antd';
 import LikeDislikes from './LikeDislikes';
 
 function SingleComment(props) {
-  
     const actions = [
         <LikeDislikes comment commentId={props.comment._id} userId={localStorage.getItem('userId')} />,
     ]
@@ -25,7 +24,6 @@ function SingleComment(props) {
                     </p>
                 }
             ></Comment>
-
         </div>
     )
 }

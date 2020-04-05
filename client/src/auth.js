@@ -4,12 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 
 export default function (ComposedClass, reload, adminRoute = null) {
     function AuthenticationCheck(props) {
-
         let user = useSelector(state => state.user);
         const dispatch = useDispatch();
-
         useEffect(() => {
-
             dispatch(auth()).then(async response => {
                 if (await !response.payload.isAuth) {
                     if (reload) {
@@ -28,7 +25,6 @@ export default function (ComposedClass, reload, adminRoute = null) {
             })
             
         }, [dispatch, props.history, user.googleAuth])
-
         return (
             <ComposedClass {...props} user={user} />
         )

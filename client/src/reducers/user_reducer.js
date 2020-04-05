@@ -14,7 +14,6 @@ import {
   UPDATE_PROFILE
 } from '../actions/types';
 
-
 export default function (state = {}, action) {
   switch (action.type) {
       case REGISTER_USER:

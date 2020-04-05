@@ -11,7 +11,6 @@ const { Title } = Typography;
 function LoginPage(props) {
   const dispatch = useDispatch();
   const rememberMeChecked = localStorage.getItem("rememberMe") ? true : false;
-
   const [formErrorMessage, setFormErrorMessage] = useState('')
   const [rememberMe, setRememberMe] = useState(rememberMeChecked)
   const initialEmail = localStorage.getItem("rememberMe") ? localStorage.getItem("rememberMe") : '';
@@ -36,7 +35,6 @@ function LoginPage(props) {
             email: values.email,
             password: values.password
           };
-
           dispatch(loginUser(dataToSubmit))
             .then(response => {
               if (response.payload.loginSuccess) {
@@ -75,10 +73,8 @@ function LoginPage(props) {
         } = props;
         return (
           <div className="app">
-
             <Title level={2}>Sign In</Title>
             <form onSubmit={handleSubmit} style={{ width: '350px' }}>
-
               <Form.Item required>
                 <Input
                   id="email"
@@ -117,7 +113,6 @@ function LoginPage(props) {
               {formErrorMessage && (
                 <label ><p style={{ color: '#ff0000bf', fontSize: '0.7rem', border: '1px solid', padding: '1rem', borderRadius: '10px' }}>{formErrorMessage}</p></label>
               )}
-
               <Form.Item>
                 <div>
                   <Button type="primary" htmlType="submit" className="login-form-button" style={{ minWidth: '100%' }} disabled={isSubmitting} onSubmit={handleSubmit}>

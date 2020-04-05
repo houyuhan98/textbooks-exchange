@@ -20,8 +20,6 @@ const path = require('path'),
 
     // enable request logging for development debugging
     app.use(morgan('dev'));
-
-    // body parsing middleware
     app.use(bodyParser.json());
     app.use(cors())
     app.use(cookieParser());
@@ -70,9 +68,6 @@ const path = require('path'),
     }
 
     const port = process.env.PORT || 5000
-
     server.listen(port, () => {
       console.log(`Server Running at ${port}`)
     });
-
-

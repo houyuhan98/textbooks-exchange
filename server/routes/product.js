@@ -3,7 +3,6 @@ const router = express.Router();
 const { Product } = require("../models/Product");
 const { Comment } = require("../models/Comment");
 const multer = require('multer');
-
 const { auth } = require("../middleware/auth");
 
 var storage = multer.diskStorage({
@@ -23,8 +22,6 @@ var storage = multer.diskStorage({
 })
 
 var upload = multer({ storage: storage }).single("file")
-
-
 router.post("/uploadImage", auth, (req, res) => {
 
     upload(req, res, err => {
@@ -36,12 +33,10 @@ router.post("/uploadImage", auth, (req, res) => {
 
 });
 
-
 router.post("/uploadProduct", auth, (req, res) => {
 
     //save all the data we got from the client into the DB 
     const product = new Product(req.body)
-
     product.save((err) => {
         if (err) returnres.status(400).json({ success: false, err })
         return res.status(200).json({ success: true, product })
@@ -49,14 +44,12 @@ router.post("/uploadProduct", auth, (req, res) => {
 
 });
 
-
 router.post("/getProducts", (req, res) => {
 
     let order = req.body.order ? req.body.order : "desc";
     let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
     let limit = req.body.limit ? parseInt(req.body.limit) : 100;
     let skip = parseInt(req.body.skip);
-
     let findArgs = {};
     let term = req.body.searchTerm;
 
@@ -73,9 +66,7 @@ router.post("/getProducts", (req, res) => {
             }
         }
     }
-
     console.log(findArgs)
-
     if (term) {
         Product.find(findArgs)
             .find({ $text: { $search: term } })
@@ -112,7 +103,6 @@ router.get("/products_by_id", (req, res) => {
             return item
         })
     }
-
     //we need to find the product information that belong to product Id 
     Product.find({ '_id': { $in: productIds } })
     .populate('writer')
@@ -162,7 +152,6 @@ router.put("/products_by_id", (req, res) => {
         userphone: userphone,
         userbio: userbio,
         useraddr: useraddr
-
     } }, { new: true }, function(err, updatedPost) {
         if (err) {
             return res.status(400).send(err);

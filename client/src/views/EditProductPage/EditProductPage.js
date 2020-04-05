@@ -69,7 +69,6 @@ function EditProductPage(props) {
       })
     }, [])
 
-
     const onTitleChange = (event) => {
         setTitleValue(event.currentTarget.value)
     }

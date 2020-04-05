@@ -11,7 +11,6 @@ function FavoritePage(props) {
   const dispatch = useDispatch();
 
     useEffect(() => {
-
         let favoriteItems = [];
         if (props.user.userData && props.user.userData.favorite) {
             if (props.user.userData.favorite.length > 0) {
@@ -19,17 +18,13 @@ function FavoritePage(props) {
                     favoriteItems.push(item.id)
                 });
                 dispatch(getFavoriteItems(favoriteItems, props.user.userData.favorite))
-
             }
         }
-
     }, [props.user.userData])
 
     const removeFromFavorite = (productId) => {
-
       dispatch(removeFavoriteItem(productId))
           .then(() => {
-
               axios.get('/api/users/userFavoriteInfo')
                   .then(response => {
                       if (response.data.success) {
@@ -41,21 +36,18 @@ function FavoritePage(props) {
                   })
           })
   }
-   
-   
 
-    return (
+  return (
       <div style={{ width: '85%', margin: '3rem auto' }}>
       <h1>My Favorite</h1>
-      <div>
-
-          <UserCardBlock
-              products={props.user.favoriteDetail}
-              removeItem={removeFromFavorite}
-          />
-      </div>
-  </div>
+        <div>
+            <UserCardBlock
+                products={props.user.favoriteDetail}
+                removeItem={removeFromFavorite}
+            />
+        </div>
+    </div>
     )
-}
+  }
 
 export default FavoritePage

@@ -3,7 +3,6 @@ const router = express.Router();
 const { Like } = require("../models/Like");
 const { Dislike } = require("../models/Dislike");
 
-
 router.post("/getLikes", (req, res) => {
 
     let variable = {}
@@ -22,7 +21,6 @@ router.post("/getLikes", (req, res) => {
 
 })
 
-
 router.post("/getDislikes", (req, res) => {
 
     let variable = {}
@@ -39,7 +37,6 @@ router.post("/getDislikes", (req, res) => {
         })
 
 })
-
 
 router.post("/upLike", (req, res) => {
 
@@ -64,9 +61,6 @@ router.post("/upLike", (req, res) => {
 
 })
 
-
-
-
 router.post("/unLike", (req, res) => {
 
     let variable = {}
@@ -83,7 +77,6 @@ router.post("/unLike", (req, res) => {
         })
 
 })
-
 
 router.post("/unDisLike", (req, res) => {
 
@@ -102,8 +95,6 @@ router.post("/unDisLike", (req, res) => {
 
 
 })
-
-
 
 router.post("/upDisLike", (req, res) => {
 
@@ -125,8 +116,6 @@ router.post("/upDisLike", (req, res) => {
                 res.status(200).json({ success: true })
             })
     })
-
-
 })
 
 module.exports = router;

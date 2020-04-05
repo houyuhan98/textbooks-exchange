@@ -6,7 +6,6 @@ const { Product } = require('../models/Product');
 const { Payment } = require('../models/Payment');
 const async = require('async');
 
-
 router.get("/auth", auth, (req, res) => {
     res.status(200).json({
         _id: req.user._id,
@@ -29,9 +28,7 @@ router.get("/auth", auth, (req, res) => {
 });
 
 router.post("/register", (req, res) => {
-
     const user = new User(req.body);
-
     user.save((err, doc) => {
         if (err) return res.json({ success: false, err });
         return res.status(200).json({
@@ -51,7 +48,6 @@ router.post("/login", (req, res) => {
         user.comparePassword(req.body.password, (err, isMatch) => {
             if (!isMatch)
                 return res.json({ loginSuccess: false, message: "Wrong password" });
-
             user.generateToken((err, user) => {
                 if (err) return res.status(400).send(err);
                 res.cookie("w_authExp", user.tokenExp);
@@ -76,7 +72,6 @@ router.get("/logout", auth, (req, res) => {
 });
 
 router.get('/addToCart', auth, (req, res) => {
-
     User.findOne({ _id: req.user._id }, (err, userInfo) => {
         let duplicate = false;
 
@@ -87,8 +82,6 @@ router.get('/addToCart', auth, (req, res) => {
                 duplicate = true;
             }
         })
-
-
         if (duplicate) {
             User.findOneAndUpdate(
                 { _id: req.user._id, "cart.id": req.query.productId },
@@ -123,7 +116,6 @@ router.get('/addToCart', auth, (req, res) => {
 
 
 router.get('/removeFromCart', auth, (req, res) => {
-
     User.findOneAndUpdate(
         { _id: req.user._id },
         {
@@ -158,8 +150,6 @@ router.get('/userCartInfo', auth, (req, res) => {
             let array = cart.map(item => {
                 return item.id
             })
-
-
             Product.find({ '_id': { $in: array } })
                 .populate('writer')
                 .exec((err, cartDetail) => {
@@ -194,8 +184,6 @@ router.post('/successPost', auth, (req, res) => {
 router.post('/successBuy', auth, (req, res) => {
     let history = [];
     let transactionData = {};
-
-    //1.Put brief Payment Information inside User Collection 
     req.body.cartDetail.forEach((item) => {
         history.push({
             dateOfPurchase: Date().toString(),
@@ -206,17 +194,13 @@ router.post('/successBuy', auth, (req, res) => {
             paymentId: req.body.paymentData.paymentID
         })
     })
-
-    //2.Put Payment Information that come from Paypal into Payment Collection 
     transactionData.user = {
         id: req.user._id,
         fullname: req.user.fullname,
         email: req.user.email
     }
-
     transactionData.data = req.body.paymentData;
     transactionData.product = history
-
 
     User.findOneAndUpdate(
         { _id: req.user._id },
@@ -224,22 +208,13 @@ router.post('/successBuy', auth, (req, res) => {
         { new: true },
         (err, user) => {
             if (err) return res.json({ success: false, err });
-
-
             const payment = new Payment(transactionData)
             payment.save((err, doc) => {
                 if (err) return res.json({ success: false, err });
-
-                //3. Increase the amount of number for the sold information 
-
-                //first We need to know how many product were sold in this transaction for 
-                // each of products
-
                 let products = [];
                 doc.product.forEach(item => {
                     products.push({ id: item.id, quantity: item.quantity })
                 })
-
                 async.eachSeries(products, (item, callback) => {
                     Product.update(
                         { _id: item.id },
@@ -259,12 +234,10 @@ router.post('/successBuy', auth, (req, res) => {
                         cartDetail: []
                     })
                 })
-
             })
         }
     )
 })
-
 
 router.get('/getHistory', auth, (req, res) => {
     User.findOne(
@@ -289,7 +262,6 @@ router.get('/getPost', auth, (req, res) => {
 })
 
 router.get('/addToFavorite', auth, (req, res) => {
-
     User.findOne({ _id: req.user._id }, (err, userInfo) => {
         let duplicate = false;
 
@@ -300,8 +272,6 @@ router.get('/addToFavorite', auth, (req, res) => {
                 duplicate = true;
             }
         })
-
-
         if (duplicate) {
             User.findOneAndUpdate(
                 { _id: req.user._id, "favorite.id": req.query.productId },
@@ -334,9 +304,7 @@ router.get('/addToFavorite', auth, (req, res) => {
     })
 });
 
-
 router.get('/removeFromFavorite', auth, (req, res) => {
-
     User.findOneAndUpdate(
         { _id: req.user._id },
         {
@@ -362,7 +330,6 @@ router.get('/removeFromFavorite', auth, (req, res) => {
     )
 })
 
-
 router.get('/userFavoriteInfo', auth, (req, res) => {
     User.findOne(
         { _id: req.user._id },
@@ -371,15 +338,12 @@ router.get('/userFavoriteInfo', auth, (req, res) => {
             let array = favorite.map(item => {
                 return item.id
             })
-
-
             Product.find({ '_id': { $in: array } })
                 .populate('writer')
                 .exec((err, favoriteDetail) => {
                     if (err) return res.status(400).send(err);
                     return res.status(200).json({ success: true, favoriteDetail, favorite })
                 })
-
         }
     )
 })

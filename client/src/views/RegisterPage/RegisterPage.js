@@ -4,15 +4,14 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { registerUser } from "../../actions/user_actions";
 import { useDispatch } from "react-redux";
-
 import {
   Form,
   Input,
   Button,
   Typography
 } from 'antd';
-const { Title } = Typography;
 
+const { Title } = Typography;
 const formItemLayout = {
   labelCol: {
     xs: { span: 24 },
@@ -39,7 +38,6 @@ const tailFormItemLayout = {
 function RegisterPage(props) {
   const dispatch = useDispatch();
   return (
-
     <Formik
       initialValues={{
         email: '',
@@ -62,7 +60,6 @@ function RegisterPage(props) {
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-
           let dataToSubmit = {
             email: values.email,
             password: values.password,
@@ -77,7 +74,6 @@ function RegisterPage(props) {
               alert(response.payload.err.errmsg)
             }
           })
-
           setSubmitting(false);
         }, 500);
       }}
@@ -98,7 +94,6 @@ function RegisterPage(props) {
           <div className="app">
             <Title level={2}>Sign Up</Title>
             <Form style={{ minWidth: '375px' }} {...formItemLayout} onSubmit={handleSubmit} >
-
               <Form.Item required label="Full Name">
                 <Input
                   id="fullname"
@@ -179,6 +174,5 @@ function RegisterPage(props) {
     </Formik>
   );
 };
-
 
 export default RegisterPage

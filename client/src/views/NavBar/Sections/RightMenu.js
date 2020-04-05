@@ -31,7 +31,6 @@ function RightMenu(props) {
   } else {
     return (
       <Menu mode={props.mode}>
-
         <Menu.Item key="profile">
           <Tooltip placement="bottom" title="user profile"><a href="/profile"><Icon type="user" style={{ fontSize: 25}} /></a></Tooltip>
         </Menu.Item>

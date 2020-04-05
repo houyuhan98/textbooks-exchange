@@ -31,8 +31,6 @@ const price = [
   }
 ]
 
-
-
 const condition = [
   {
       "_id": 1,
@@ -71,7 +69,7 @@ const level = [
     }
   ]
 
-  const department = [
+const department = [
     {
         "_id": 1,
         "name": "Herbert Wertheim College of Engineering"
@@ -100,9 +98,9 @@ const level = [
         "_id": 7,
         "name": "Fisher School of Accounting"
     }
-  ]
+]
 
-  const category = [
+const category = [
     {
         "_id": 1,
         "name": "Finance"
@@ -123,8 +121,7 @@ const level = [
         "_id": 5,
         "name": "Music"
     }
-  ]
-
+]
 
 export {
   price,

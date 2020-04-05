@@ -1,4 +1,3 @@
-// 404
 import React from 'react';
 import {Icon} from 'antd';
 

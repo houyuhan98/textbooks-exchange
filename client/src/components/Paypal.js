@@ -10,22 +10,18 @@ export default class Paypal extends React.Component {
             this.props.onSuccess(payment);
         
         }
-
         const onCancel = (data) => {
             // User pressed "cancel" or close Paypal's popup!
             console.log('The payment was cancelled!', data);
             // You can bind the "data" object's value to your state or props or whatever here, please see below for sample returned data
         }
-
         const onError = (err) => {
             console.log("Error!", err);
            
         }
-
         let env = 'sandbox'; // you can set here to 'production' for production
         let currency = 'USD'; // or you can set this value from your props or state
         let total = this.props.toPay; // same as above, this is the total amount (based on currency) to be paid by using Paypal express checkout
-
         const client = {
             sandbox: 'AQ0qhKSi01VWHdGNE3mOjxipP_NOr6yKS84cV-J6_SpOsoxtWEIkolqjY_ePlq40RDpKCONuYkElt8qc',
             production: 'AQ0qhKSi01VWHdGNE3mOjxipP_NOr6yKS84cV-J6_SpOsoxtWEIkolqjY_ePlq40RDpKCONuYkElt8qc',
@@ -46,7 +42,7 @@ export default class Paypal extends React.Component {
                     shape: 'rect',
                     label: 'checkout'
                 }}
-                 />
+            />
         );
     }
 }

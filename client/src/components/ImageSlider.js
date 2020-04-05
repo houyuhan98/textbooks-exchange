@@ -4,7 +4,6 @@ import { Carousel } from 'antd';
 function ImageSlider(props) {
     return (
         <div>
-
             <Carousel autoplay>
                 {props.images.map((image, index) => (
                     <div key={index}>

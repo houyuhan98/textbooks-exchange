@@ -3,7 +3,6 @@ import { Tooltip, Icon } from 'antd';
 import Axios from 'axios';
 
 function LikeDislikes(props) {
-
     const [Likes, setLikes] = useState(0)
     const [Dislikes, setDislikes] = useState(0)
     const [LikeAction, setLikeAction] = useState(null)
@@ -16,15 +15,10 @@ function LikeDislikes(props) {
         variable = { commentId: props.commentId, userId: props.userId }
     }
 
-    
-
-
     useEffect(() => {
-
         Axios.post('/api/like/getLikes', variable)
             .then(response => {
                 console.log('getLikes',response.data)
-
                 if (response.data.success) {
                     //How many likes does this video or comment have 
                     setLikes(response.data.likes.length)
@@ -57,37 +51,25 @@ function LikeDislikes(props) {
                     alert('Failed to get dislikes')
                 }
             })
-
     }, [])
 
-
     const onLike = () => {
-      
         if (LikeAction === null) {
-
             Axios.post('/api/like/upLike', variable)
                 .then(response => {
                     if (response.data.success) {
-
                         setLikes(Likes + 1)
                         setLikeAction('liked')
-
                         //If dislike button is already clicked
-
                         if (DislikeAction !== null) {
                             setDislikeAction(null)
                             setDislikes(Dislikes - 1)
                         }
-
-
                     } else {
                         alert('Failed to increase the like')
                     }
                 })
-
-
         } else {
-
             Axios.post('/api/like/unLike', variable)
                 .then(response => {
                     if (response.data.success) {
@@ -99,15 +81,11 @@ function LikeDislikes(props) {
                         alert('Failed to decrease the like')
                     }
                 })
-
         }
-
     }
-
 
     const onDisLike = () => {
         if (DislikeAction !== null) {
-
             Axios.post('/api/like/unDisLike', variable)
                 .then(response => {
                     if (response.data.success) {
@@ -119,9 +97,7 @@ function LikeDislikes(props) {
                         alert('Failed to decrease dislike')
                     }
                 })
-
         } else {
-
             Axios.post('/api/like/upDisLike', variable)
                 .then(response => {
                     if (response.data.success) {
@@ -139,11 +115,7 @@ function LikeDislikes(props) {
                         alert('Failed to increase dislike')
                     }
                 })
-
-
-        }
-
-
+            }
     }
 
     return (

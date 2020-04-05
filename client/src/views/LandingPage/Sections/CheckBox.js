@@ -1,15 +1,9 @@
 import React, { useState } from 'react'
-import { Checkbox, Collapse } from 'antd';
-
-const { Panel } = Collapse
-
+import { Checkbox } from 'antd';
 
 function CheckBox(props) {
-
     const [Checked, setChecked] = useState([])
-
     const handleToggle = (value) => {
-
         const currentIndex = Checked.indexOf(value);
         const newChecked = [...Checked];
 
@@ -18,11 +12,8 @@ function CheckBox(props) {
         } else {
             newChecked.splice(currentIndex, 1)
         }
-
         setChecked(newChecked)
         props.handleFilters(newChecked)
-        //update this checked information into Parent Component 
-
     }
 
     const renderCheckboxLists = () => props.list && props.list.map((value, index) => (
