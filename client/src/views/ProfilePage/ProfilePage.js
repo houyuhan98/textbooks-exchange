@@ -111,7 +111,7 @@ function ProfilePage() {
     const renderImage = (images) => {
         if(images.length > 0) {
             let image = images[0]
-            return `http://localhost:5000/${image}`
+            return `https://textbook-exchange-uf.herokuapp.com/${image}`
         }
     }
 
