@@ -12,7 +12,7 @@ export class ChatPage extends Component {
     }
 
     componentDidMount() {
-        let server = "http://localhost:5000";
+        let server = "https://textbook-exchange-uf.herokuapp.com/";
         this.props.dispatch(getChats());
         this.socket = io(server);
         this.socket.on("Output Chat Message", messageFromBackEnd => {
