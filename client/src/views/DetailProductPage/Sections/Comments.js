@@ -56,7 +56,7 @@ function Comments(props) {
 
             {props.CommentLists && props.CommentLists.length === 0 &&
                 <div style={{ display: 'flex', justifyContent:'center', alignItems:'center', height:'200px'}} >
-                    Be the first one who shares your thought about this movie
+                    Be the first one to share your thought about this textbook
                 </div>
             }
 

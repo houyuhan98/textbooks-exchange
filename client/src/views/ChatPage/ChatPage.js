@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Icon, Input, Button, Row, Col, } from 'antd';
+import { Form, Icon, Input, Button, Row, Col } from 'antd';
 import io from "socket.io-client";
 import { connect } from "react-redux";
 import moment from "moment";
