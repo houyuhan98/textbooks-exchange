@@ -31,7 +31,7 @@ const path = require('path'),
     app.use('/api/chat', require('./routes/chat'));
     app.use('/uploads', express.static('uploads'));
 
-    sgMail.setApiKey(process.env.sgmail || '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');
+    sgMail.setApiKey(process.env.sgmail || require('./config/config').sgmail);
 
     const { Chat } = require("./models/Chat");
     io.on("connection", socket => {
