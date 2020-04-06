@@ -6,10 +6,10 @@
 /uploads
 /.pnp
 .pnp.js
-/server/config/config.js
+
 # testing
 /coverage
-
+/server/config/config.js
 # production
 /build
 client/build
