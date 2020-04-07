@@ -64,7 +64,8 @@ function DetailProductPage(props) {
                         <ProductInfo
                             addToCart={addToCartHandler}
                             addToFavorite={addToFavoriteHandler}
-                            detail={Product} />
+                            detail={Product} 
+                            parent={props}/>
                     </Col>
                 </Row>
             </div>
@@ -72,7 +73,7 @@ function DetailProductPage(props) {
             <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <LikeDislikes video videoId={productId} userId={localStorage.getItem('userId')} />
             </div>
-            <Comments productTitle={Product.title} CommentLists={CommentLists} postId={productId} refreshFunction={updateComment} />
+            <Comments parent={props} productTitle={Product.title} CommentLists={CommentLists} postId={productId} refreshFunction={updateComment} />
         </div>
     )
 }
