@@ -18,7 +18,8 @@ function Comments(props) {
     const onSubmit = (e) => {
         e.preventDefault();
         if (user.userData && !user.userData.isAuth) {
-            return alert('Please Log in first');
+            alert('Please Log in first')
+            return props.parent.history.push('/login')
         }
         const variables = {
             content: Comment,
