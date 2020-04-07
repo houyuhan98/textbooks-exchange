@@ -40,7 +40,8 @@ export class ChatPage extends Component {
     submitChatMessage = (e) => {
         e.preventDefault();
         if (this.props.user.userData && !this.props.user.userData.isAuth) {
-            return alert('Please Log in first');
+            alert('Please Log in first')
+            return this.props.history.push('/login')
         }
         let chatMessage = this.state.chatMessage
         let userId = this.props.user.userData._id

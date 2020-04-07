@@ -14,13 +14,15 @@ function ProductInfo(props) {
 
     const addToCarthandler = () => {
         if (user.userData && !user.userData.isAuth) {
-            return alert('Please Log in first');
+          alert('Please Log in first')
+          return props.parent.history.push('/login')
         }
         props.addToCart(props.detail._id)
     }
     const addToFavoritehandler = () => {
         if (user.userData && !user.userData.isAuth) {
-            return alert('Please Log in first');
+          alert('Please Log in first')
+          return props.parent.history.push('/login')
         }
         props.addToFavorite(props.detail._id)
     }
