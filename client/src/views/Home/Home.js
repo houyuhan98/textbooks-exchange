@@ -77,7 +77,7 @@ function Home() {
             </div>
             <div id="home-hero1">
                 <div className="container">
-                    <h2 className="intro">Stop wasting money<br />Start exchanging old textbooks<br/><a href="/textbook"><Button className="start" type="default" size="large" icon="right">Let's get started</Button></a></h2>
+                    <h2 className="intro">Stop wasting money<br />Start exchanging old textbooks<br/><a href="/login"><Button className="start" type="default" size="large" icon="right">Let's get started</Button></a></h2>
                 </div>
             </div>
         </div>

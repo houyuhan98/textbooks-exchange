@@ -6,10 +6,11 @@ import CheckBox from './Sections/CheckBox';
 import RadioBox from './Sections/RadioBox';
 import { condition, price, level, department, category } from './Sections/Datas';
 import SearchFeature from './Sections/SearchFeature';
-import { Collapse } from 'antd';
+import { Collapse, Select } from 'antd';
 
 const { Panel } = Collapse
-const { Meta } = Card;
+const { Meta } = Card
+const { Option } = Select
 
 function LandingPage() {
     const [Products, setProducts] = useState([])
@@ -123,8 +124,25 @@ function LandingPage() {
     return (
         <div style={{ width: '75%', margin: '3rem auto' }}>
             <div style={{ textAlign: 'center' }}>
-                <h2>  Let's Make Use of Used Textbooks  <Icon type="rocket" />  </h2>
+                <h2>Let's Make Use of Used Textbooks<Icon type="rocket" /></h2>
+                <Select
+                    showSearch
+                    style={{ width: 200 }}
+                    placeholder="Select your University"
+                >
+                    <Option value="uf">University of Florida</Option>
+                    <Option value="ucf">University of Central Florida</Option>
+                    <Option value="gt">Georgia Institute of Technology</Option>
+                    <Option value="cmu">Carnegie Mellon University</Option>
+                    <Option value="ucb">University of California, Berkeley</Option>
+                    <Option value="usc">University of Southern California</Option>
+                    <Option value="su">Stanford University</Option>
+                    <Option value="nyu">New York University</Option>
+                    <Option value="uiuc">University of Illinois at Urbana-Champaign</Option>
+                    <Option value="mit">Massachusetts Institute of Technology</Option>
+                </Select>
             </div>
+            <br/>
 
             {/* Filter  */}
             <Collapse defaultActiveKey={['0']} >

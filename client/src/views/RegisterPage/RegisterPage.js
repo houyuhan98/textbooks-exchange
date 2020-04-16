@@ -8,32 +8,11 @@ import {
   Form,
   Input,
   Button,
-  Typography
+  Typography,
+  Icon
 } from 'antd';
 
 const { Title } = Typography;
-const formItemLayout = {
-  labelCol: {
-    xs: { span: 24 },
-    sm: { span: 8 },
-  },
-  wrapperCol: {
-    xs: { span: 24 },
-    sm: { span: 16 },
-  },
-};
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0,
-    },
-    sm: {
-      span: 16,
-      offset: 8,
-    },
-  },
-};
 
 function RegisterPage(props) {
   const dispatch = useDispatch();
@@ -93,12 +72,13 @@ function RegisterPage(props) {
         return (
           <div className="app">
             <Title level={2}>Sign Up</Title>
-            <Form style={{ minWidth: '375px' }} {...formItemLayout} onSubmit={handleSubmit} >
-              <Form.Item required label="Full Name">
+            <Form style={{ width: '350px' }} onSubmit={handleSubmit} >
+              <Form.Item required>
                 <Input
                   id="fullname"
                   placeholder="Enter your full name"
                   type="text"
+                  prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                   value={values.fullname}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -111,11 +91,12 @@ function RegisterPage(props) {
                 )}
               </Form.Item>
 
-              <Form.Item required label="Email" hasFeedback validateStatus={errors.email && touched.email ? "error" : 'success'}>
+              <Form.Item required hasFeedback validateStatus={errors.email && touched.email ? "error" : 'success'}>
                 <Input
                   id="email"
                   placeholder="Enter your Email"
                   type="email"
+                  prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
                   value={values.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -128,11 +109,12 @@ function RegisterPage(props) {
                 )}
               </Form.Item>
 
-              <Form.Item required label="Password" hasFeedback validateStatus={errors.password && touched.password ? "error" : 'success'}>
+              <Form.Item required hasFeedback validateStatus={errors.password && touched.password ? "error" : 'success'}>
                 <Input
                   id="password"
                   placeholder="Enter your password"
                   type="password"
+                  prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                   value={values.password}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -145,11 +127,12 @@ function RegisterPage(props) {
                 )}
               </Form.Item>
 
-              <Form.Item required label="Confirm" hasFeedback>
+              <Form.Item required hasFeedback>
                 <Input
                   id="confirmPassword"
                   placeholder="Confirm your Password"
                   type="password"
+                  prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                   value={values.confirmPassword}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -162,10 +145,11 @@ function RegisterPage(props) {
                 )}
               </Form.Item>
 
-              <Form.Item {...tailFormItemLayout}>
-                <Button onClick={handleSubmit} type="primary" disabled={isSubmitting}>
+              <Form.Item>
+                <Button onClick={handleSubmit} type="primary" style={{ minWidth: '100%' }} disabled={isSubmitting}>
                   Submit
                 </Button>
+                Or <a href="/login">Already have account? log in!</a>
               </Form.Item>
             </Form>
           </div>
